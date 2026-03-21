@@ -15,33 +15,61 @@
   --text:#1A1A18;--muted:#6B6A65;--hint:#9C9B96;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-.app{display:flex;flex-direction:column;min-height:100vh;}
 
-/* TOPBAR */
-.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:0 1.5rem;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;}
+/* ── AUTH ── */
+#auth-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;}
+.auth-screen{width:100%;max-width:420px;}
+.auth-logo{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;color:var(--coral);text-align:center;margin-bottom:6px;letter-spacing:-0.5px;}
+.auth-logo span{color:var(--purple);}
+.auth-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:28px;}
+.auth-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;}
+.field{margin-bottom:16px;}
+.field-label{font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.field input,.field select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;background:var(--card);color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;}
+.field input:focus{border-color:var(--coral);}
+.btn-main{width:100%;padding:11px;background:var(--coral);color:white;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;font-family:'DM Sans',sans-serif;transition:background .15s;}
+.btn-main:hover{background:var(--coral-dark);}
+.btn-main:disabled{opacity:.35;cursor:not-allowed;}
+.btn-google{width:100%;padding:10px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;margin-bottom:18px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .12s;}
+.btn-google:hover{background:var(--bg);}
+.g-dot{width:14px;height:14px;border-radius:50%;background:conic-gradient(#4285F4 0 25%,#EA4335 25% 50%,#FBBC04 50% 75%,#34A853 75%);}
+.divider{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-size:12px;color:var(--hint);}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.auth-link{font-size:13px;color:var(--purple);cursor:pointer;text-align:center;margin-top:18px;font-weight:500;}
+.auth-link:hover{text-decoration:underline;}
+.steps{display:flex;gap:6px;justify-content:center;margin-bottom:16px;}
+.sdot{width:28px;height:4px;border-radius:2px;background:var(--border);transition:background .2s;}
+.sdot.on{background:var(--coral);}
+.step-lbl{font-size:12px;color:var(--hint);text-align:center;margin-bottom:20px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 20px;}
+.role-card{border:1px solid var(--border);border-radius:12px;padding:20px 14px;cursor:pointer;text-align:center;background:var(--card);transition:all .15s;}
+.role-card:hover{border-color:var(--coral);}
+.role-card.sel{border:2px solid var(--coral);background:var(--coral-light);}
+.role-icon{font-size:26px;margin-bottom:10px;}
+.role-name{font-size:14px;font-weight:600;}
+.role-desc{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4;}
+
+/* ── APP SHELL ── */
+#app{display:none;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:0 1.5rem;height:56px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;}
 .logo{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;color:var(--coral);letter-spacing:-0.5px;}
 .logo span{color:var(--purple);}
-.tagline{font-size:12px;color:var(--hint);padding-left:12px;border-left:1px solid var(--border);margin-left:4px;}
-.role-sw{display:flex;background:var(--bg);border-radius:8px;padding:3px;gap:2px;margin-left:auto;}
-.rbtn{font-size:13px;padding:5px 16px;border-radius:6px;border:none;cursor:pointer;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s;}
-.rbtn.on{background:var(--card);color:var(--text);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08);}
-
-/* LAYOUT */
+.role-pill{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;}
+.rp-cr{background:var(--coral-light);color:var(--coral-dark);}
+.rp-br{background:var(--purple-light);color:var(--purple);}
+.btn-logout{margin-left:auto;font-size:12px;color:var(--muted);background:none;border:1px solid var(--border);padding:5px 12px;border-radius:7px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-logout:hover{background:var(--bg);}
 .layout{display:flex;flex:1;}
 .sidebar{width:210px;background:var(--card);border-right:1px solid var(--border);padding:16px 10px;display:flex;flex-direction:column;gap:2px;flex-shrink:0;}
 .seclabel{font-size:10px;color:var(--hint);padding:6px 10px 8px;text-transform:uppercase;letter-spacing:.7px;}
 .nitem{padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer;color:var(--muted);border:none;background:transparent;text-align:left;width:100%;display:flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;transition:all .12s;}
-.nitem.on{background:var(--coral-light);color:var(--coral-dark);font-weight:500;}
+.nitem.on{background:var(--coral-light);color:var(--coral-dark);font-weight:600;}
 .nitem:hover:not(.on){background:var(--bg);}
 .nicn{font-size:14px;width:18px;text-align:center;}
-
-/* CONTENT */
 .content{flex:1;padding:1.5rem;overflow-y:auto;background:var(--bg);}
 .pgheader{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;}
 .pgtitle{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;letter-spacing:-.3px;}
 .pgsub{font-size:13px;color:var(--muted);margin-top:4px;}
-
-/* METRICS */
 .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
 .mgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
 .mcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;}
@@ -49,62 +77,45 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .mval{font-size:24px;font-weight:600;font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px;}
 .msub{font-size:11px;color:var(--hint);margin-top:4px;}
 .msub.up{color:var(--teal);}
-
-/* CARDS */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;}
 .card:last-child{margin-bottom:0;}
-.stitle{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text);}
+.stitle{font-size:13px;font-weight:600;margin-bottom:12px;}
 .row{display:flex;justify-content:space-between;align-items:center;}
 .sep{border-bottom:1px solid var(--border);}
-
-/* BADGES */
 .badge{font-size:11px;padding:3px 9px;border-radius:6px;font-weight:500;display:inline-block;}
 .b-ok{background:var(--teal-light);color:#0F6E56;}
 .b-warn{background:#FAEEDA;color:#854F0B;}
 .b-info{background:var(--purple-light);color:var(--purple);}
 .b-err{background:#FCEBEB;color:#A32D2D;}
-
-/* BUTTONS */
 .btn-p{background:var(--coral);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;}
 .btn-p:hover{background:var(--coral-dark);}
 .btn-s{background:transparent;color:var(--text);border:1px solid var(--border);padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}
 .btn-s:hover{background:var(--bg);}
-
-/* AVATARS */
 .av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0;}
 .av-o{background:var(--coral-light);color:var(--coral);}
 .av-p{background:var(--purple-light);color:var(--purple);}
 .av-sq{border-radius:9px;}
-
-/* BAR */
 .bar-wrap{background:var(--bg);border-radius:4px;height:7px;overflow:hidden;margin-top:5px;}
-.bar-fill{background:var(--coral);height:100%;border-radius:4px;}
-
-/* CHART */
+.bar-fill{height:100%;border-radius:4px;}
 .chart-bars{display:flex;align-items:flex-end;gap:8px;height:110px;padding:0 4px;}
 .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;}
 .bar-rect{width:100%;border-radius:4px 4px 0 0;}
-
-/* MISC */
 select{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'DM Sans',sans-serif;}
-.mono{font-family:monospace;font-size:12px;background:var(--bg);padding:2px 7px;border-radius:4px;color:var(--text);}
-input[type=range]{accent-color:var(--coral);}
-
-/* EMPTY STATE */
-.empty{text-align:center;padding:48px 24px;color:var(--muted);}
-.empty-icon{font-size:32px;margin-bottom:12px;}
+.mono{font-family:monospace;font-size:12px;background:var(--bg);padding:2px 7px;border-radius:4px;}
 </style>
 </head>
 <body>
-<div class="app">
+
+<div id="auth-wrap">
+  <div class="auth-screen" id="auth-screen"></div>
+</div>
+
+<div id="app">
   <div class="topbar">
     <span class="logo">Zyn<span>flu</span></span>
-    <span class="tagline">Conectando marcas con influencers</span>
-    <div class="role-sw">
-      <button class="rbtn on" id="rb-inf" onclick="switchRole('influencer',this)">Influencer</button>
-      <button class="rbtn" id="rb-brand" onclick="switchRole('brand',this)">Marca</button>
-    </div>
+    <span class="role-pill" id="role-badge"></span>
+    <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
   </div>
   <div class="layout">
     <nav class="sidebar" id="sidebar"></nav>
@@ -113,211 +124,158 @@ input[type=range]{accent-color:var(--coral);}
 </div>
 
 <script>
-let role='influencer', sec='dashboard';
+var S = { screen:'login', role:null, userRole:null, sec:'dashboard' };
 
-const navI=[
-  {id:'dashboard',icon:'◈',label:'Dashboard'},
-  {id:'campaigns',icon:'◎',label:'Campañas'},
-  {id:'contracts',icon:'◻',label:'Mis contratos'},
-  {id:'earnings',icon:'◇',label:'Comisiones'},
-  {id:'profile',icon:'◉',label:'Mi perfil'},
-];
-const navB=[
-  {id:'dashboard',icon:'◈',label:'Dashboard'},
-  {id:'campaigns',icon:'◎',label:'Mis campañas'},
-  {id:'applications',icon:'◻',label:'Postulaciones'},
-  {id:'analytics',icon:'◇',label:'Métricas'},
-  {id:'settings',icon:'◉',label:'Configuración'},
-];
+var AUTH = {
+  login: function(){ return '<div class="auth-logo">Zyn<span>flu</span></div><div class="auth-sub">Conectando marcas con influencers</div><div class="auth-card"><button class="btn-google"><div class="g-dot"></div>Continuar con Google</button><div class="divider">o ingresá con email</div><div class="field"><div class="field-label">Email</div><input type="email" placeholder="tu@email.com"/></div><div class="field"><div class="field-label">Contraseña</div><input type="password" placeholder="••••••••"/></div><button class="btn-main" onclick="ga(\'role-select\')">Ingresar</button></div><div class="auth-link" onclick="ga(\'register\')">¿No tenés cuenta? Registrate gratis</div>'; },
+  register: function(){ return '<div class="auth-logo">Zyn<span>flu</span></div><div class="auth-sub">Creá tu cuenta gratuita</div><div class="auth-card"><button class="btn-google"><div class="g-dot"></div>Registrarse con Google</button><div class="divider">o con email</div><div class="field"><div class="field-label">Nombre completo</div><input type="text" placeholder="Tu nombre"/></div><div class="field"><div class="field-label">Email</div><input type="email" placeholder="tu@email.com"/></div><div class="field"><div class="field-label">Contraseña</div><input type="password" placeholder="Mínimo 8 caracteres"/></div><button class="btn-main" onclick="ga(\'role-select\')">Crear cuenta</button></div><div class="auth-link" onclick="ga(\'login\')">¿Ya tenés cuenta? Ingresá</div>'; },
+  'role-select': function(){
+    return '<div class="steps"><div class="sdot on"></div><div class="sdot"></div><div class="sdot"></div></div><div class="auth-logo" style="margin-bottom:4px">Zyn<span>flu</span></div><div class="auth-sub">¿Cómo vas a usar Zynflu?</div><div class="auth-card"><div class="role-grid"><div class="role-card'+(S.role==='creator'?' sel':'')+'" onclick="selRole(\'creator\')"><div class="role-icon">◉</div><div class="role-name">Soy creator</div><div class="role-desc">Quiero monetizar mi audiencia con marcas</div></div><div class="role-card'+(S.role==='brand'?' sel':'')+'" onclick="selRole(\'brand\')"><div class="role-icon">◈</div><div class="role-name">Soy marca</div><div class="role-desc">Quiero vender más con influencers</div></div></div><button class="btn-main" onclick="goOb()" '+(S.role?'':'disabled')+'>Continuar</button></div>';
+  },
+  'ob-cr-1': function(){ return '<div class="steps"><div class="sdot on"></div><div class="sdot on"></div><div class="sdot"></div></div><div class="step-lbl">Paso 2 de 3 &middot; Tu perfil</div><div class="auth-card"><div style="font-size:15px;font-weight:600;margin-bottom:18px">Contanos sobre vos</div><div class="field"><div class="field-label">Handle / usuario</div><input type="text" placeholder="@tu_usuario"/></div><div class="field"><div class="field-label">Nicho principal</div><select><option>Fitness & Bienestar</option><option>Moda & Lifestyle</option><option>Tecnología</option><option>Gastronomía</option><option>Viajes</option><option>Gaming</option></select></div><div class="field"><div class="field-label">País</div><input type="text" placeholder="Argentina"/></div><button class="btn-main" onclick="ga(\'ob-cr-2\')">Continuar</button></div>'; },
+  'ob-cr-2': function(){ return '<div class="steps"><div class="sdot on"></div><div class="sdot on"></div><div class="sdot on"></div></div><div class="step-lbl">Paso 3 de 3 &middot; Tus redes</div><div class="auth-card"><div style="font-size:15px;font-weight:600;margin-bottom:18px">¿Dónde está tu audiencia?</div><div class="field"><div class="field-label">Instagram</div><input type="text" placeholder="@usuario (seguidores aprox.)"/></div><div class="field"><div class="field-label">TikTok</div><input type="text" placeholder="@usuario (seguidores aprox.)"/></div><div class="field"><div class="field-label">YouTube (opcional)</div><input type="text" placeholder="Nombre del canal"/></div><button class="btn-main" onclick="enterApp(\'creator\')">Entrar a Zynflu</button></div>'; },
+  'ob-br-1': function(){ return '<div class="steps"><div class="sdot on"></div><div class="sdot on"></div><div class="sdot"></div></div><div class="step-lbl">Paso 2 de 3 &middot; Tu empresa</div><div class="auth-card"><div style="font-size:15px;font-weight:600;margin-bottom:18px">Datos de tu marca</div><div class="field"><div class="field-label">Nombre de la marca</div><input type="text" placeholder="Ej: NutriBox"/></div><div class="field"><div class="field-label">Industria</div><select><option>Alimentos & Nutrición</option><option>Moda & Indumentaria</option><option>Tecnología</option><option>Belleza & Skincare</option><option>Deportes</option></select></div><div class="field"><div class="field-label">Sitio web</div><input type="text" placeholder="tutienda.com"/></div><button class="btn-main" onclick="ga(\'ob-br-2\')">Continuar</button></div>'; },
+  'ob-br-2': function(){ return '<div class="steps"><div class="sdot on"></div><div class="sdot on"></div><div class="sdot on"></div></div><div class="step-lbl">Paso 3 de 3 &middot; Preferencias</div><div class="auth-card"><div style="font-size:15px;font-weight:600;margin-bottom:18px">¿Qué creators buscás?</div><div class="field"><div class="field-label">Nicho de influencers</div><select><option>Salud & Nutrición</option><option>Moda</option><option>Tecnología</option><option>Lifestyle</option><option>Todos</option></select></div><div class="field"><div class="field-label">Seguidores mínimos</div><select><option>Sin mínimo</option><option>1.000+</option><option>5.000+</option><option>10.000+</option></select></div><div class="field"><div class="field-label">Plataforma ecommerce</div><select><option>Shopify</option><option>WooCommerce</option><option>TiendaNube</option><option>Otra / Manual</option></select></div><button class="btn-main" onclick="enterApp(\'brand\')">Entrar a Zynflu</button></div>'; },
+};
 
-function switchRole(r,el){
-  role=r; sec='dashboard';
-  document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  render();
-}
-function go(s){sec=s;render();}
+function ga(s){ S.screen=s; document.getElementById('auth-screen').innerHTML=AUTH[s](); }
+function selRole(r){ S.role=r; ga('role-select'); }
+function goOb(){ if(!S.role) return; ga(S.role==='creator'?'ob-cr-1':'ob-br-1'); }
 
-function render(){
-  const nav=role==='influencer'?navI:navB;
-  const sb=document.getElementById('sidebar');
-  sb.innerHTML=`<div class="seclabel">Menú</div>`+nav.map(n=>`<button class="nitem${sec===n.id?' on':''}" onclick="go('${n.id}')"><span class="nicn" style="color:${sec===n.id?'var(--coral)':'var(--hint)'}">${n.icon}</span>${n.label}</button>`).join('');
-  document.getElementById('content').innerHTML=role==='influencer'?iView():bView();
+function enterApp(role){
+  S.userRole=role; S.sec='dashboard';
+  document.getElementById('auth-wrap').style.display='none';
+  document.getElementById('app').style.display='flex';
+  var b=document.getElementById('role-badge');
+  if(role==='creator'){ b.textContent='Creator'; b.className='role-pill rp-cr'; }
+  else { b.textContent='Marca'; b.className='role-pill rp-br'; }
+  renderApp();
 }
 
-function hdr(title,sub,btnLabel=''){
-  return `<div class="pgheader"><div><div class="pgtitle">${title}</div>${sub?`<div class="pgsub">${sub}</div>`:''}</div>${btnLabel?`<button class="btn-p">${btnLabel}</button>`:''}</div>`;
+function logout(){
+  S.userRole=null; S.role=null; S.screen='login';
+  document.getElementById('app').style.display='none';
+  document.getElementById('auth-wrap').style.display='flex';
+  ga('login');
 }
 
-/* ─── INFLUENCER VIEWS ─── */
-function iView(){
-  if(sec==='dashboard')return iDash();
-  if(sec==='campaigns')return iCamp();
-  if(sec==='contracts')return iContracts();
-  if(sec==='earnings')return iEarnings();
-  if(sec==='profile')return iProfile();
+var NAV_CR=[{id:'dashboard',icon:'◈',label:'Dashboard'},{id:'campaigns',icon:'◎',label:'Campañas'},{id:'contracts',icon:'◻',label:'Mis contratos'},{id:'earnings',icon:'◇',label:'Comisiones'},{id:'profile',icon:'◉',label:'Mi perfil'}];
+var NAV_BR=[{id:'dashboard',icon:'◈',label:'Dashboard'},{id:'campaigns',icon:'◎',label:'Mis campañas'},{id:'applications',icon:'◻',label:'Postulaciones'},{id:'analytics',icon:'◇',label:'Métricas'},{id:'settings',icon:'◉',label:'Configuración'}];
+
+function go(s){ S.sec=s; renderApp(); }
+
+function renderApp(){
+  var nav=S.userRole==='creator'?NAV_CR:NAV_BR;
+  document.getElementById('sidebar').innerHTML='<div class="seclabel">Menú</div>'+nav.map(function(n){return '<button class="nitem'+(S.sec===n.id?' on':'')+'" onclick="go(\''+n.id+'\')"><span class="nicn" style="color:'+(S.sec===n.id?'var(--coral)':'var(--hint)')+'">'+n.icon+'</span>'+n.label+'</button>';}).join('');
+  document.getElementById('content').innerHTML=S.userRole==='creator'?crView():brView();
+}
+
+function hdr(t,s,b){ return '<div class="pgheader"><div><div class="pgtitle">'+t+'</div>'+(s?'<div class="pgsub">'+s+'</div>':'')+' </div>'+(b?'<button class="btn-p">'+b+'</button>':'')+' </div>'; }
+
+function crView(){
+  if(S.sec==='dashboard') return crDash();
+  if(S.sec==='campaigns') return crCamp();
+  if(S.sec==='contracts') return crContr();
+  if(S.sec==='earnings') return crEarn();
+  if(S.sec==='profile') return crProf();
   return '';
 }
 
-function iDash(){
-  return hdr('Hola, @camila_fit ✦','Tenés 3 nuevas oportunidades disponibles')+`
-  <div class="mgrid">
-    <div class="mcard"><div class="mlbl">Contratos activos</div><div class="mval" style="color:var(--coral)">4</div><div class="msub up">+1 este mes</div></div>
-    <div class="mcard"><div class="mlbl">Total ganado</div><div class="mval">$2,840</div><div class="msub">USD acumulado</div></div>
-    <div class="mcard"><div class="mlbl">Pago pendiente</div><div class="mval" style="color:var(--purple)">$420</div><div class="msub">Próximo: 1 abr</div></div>
-    <div class="mcard"><div class="mlbl">Código usado</div><div class="mval">312</div><div class="msub">veces este mes</div></div>
-  </div>
-  <div class="grid2">
-    <div>
-      <div class="stitle">Contratos recientes</div>
-      ${[{brand:'NutriBox',prod:'Cajas de snacks',st:'Activo',pct:'12%'},{brand:'FlowSport',prod:'Ropa deportiva',st:'Activo',pct:'15%'},{brand:'SkinGlow',prod:'Skincare set',st:'En revisión',pct:'10%'}].map(c=>`
-      <div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-o">${c.brand[0]}</div><div><div style="font-size:13px;font-weight:500">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.prod}</div></div></div><div style="text-align:right"><span class="badge ${c.st==='Activo'?'b-ok':'b-warn'}">${c.st}</span><div style="font-size:12px;color:var(--muted);margin-top:3px">${c.pct} comisión</div></div></div>`).join('')}
-    </div>
-    <div>
-      <div class="stitle">Campañas disponibles</div>
-      ${[{brand:'VerdeMar',cat:'Suplementos',com:'18%',desc:'20%'},{brand:'KidsPlay',cat:'Juguetes',com:'14%',desc:'15%'},{brand:'BrewCo',cat:'Café premium',com:'20%',desc:'25%'}].map(c=>`
-      <div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-p">${c.brand[0]}</div><div><div style="font-size:13px;font-weight:500">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.cat}</div></div></div><div style="text-align:right"><div style="font-size:16px;font-weight:600;color:var(--coral)">${c.com}</div><div style="font-size:11px;color:var(--muted)">${c.desc} desc. para audiencia</div></div></div>`).join('')}
-    </div>
-  </div>`;
+function crDash(){
+  return hdr('Hola, @camila_fit ✦','Tenés 3 nuevas oportunidades disponibles')+
+  '<div class="mgrid"><div class="mcard"><div class="mlbl">Contratos activos</div><div class="mval" style="color:var(--coral)">4</div><div class="msub up">+1 este mes</div></div><div class="mcard"><div class="mlbl">Total ganado</div><div class="mval">$2,840</div><div class="msub">USD acumulado</div></div><div class="mcard"><div class="mlbl">Pago pendiente</div><div class="mval" style="color:var(--purple)">$420</div><div class="msub">Próximo: 1 abr</div></div><div class="mcard"><div class="mlbl">Código usado</div><div class="mval">312</div><div class="msub">veces este mes</div></div></div>'+
+  '<div class="grid2"><div><div class="stitle">Contratos recientes</div>'+
+  [{b:'NutriBox',p:'Cajas de snacks',st:'Activo',c:'12%'},{b:'FlowSport',p:'Ropa deportiva',st:'Activo',c:'15%'},{b:'SkinGlow',p:'Skincare set',st:'En revisión',c:'10%'}].map(function(x){ return '<div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-o">'+x.b[0]+'</div><div><div style="font-size:13px;font-weight:500">'+x.b+'</div><div style="font-size:12px;color:var(--muted)">'+x.p+'</div></div></div><div style="text-align:right"><span class="badge '+(x.st==='Activo'?'b-ok':'b-warn')+'">'+x.st+'</span><div style="font-size:12px;color:var(--muted);margin-top:3px">'+x.c+' comisión</div></div></div>'; }).join('')+
+  '</div><div><div class="stitle">Campañas disponibles</div>'+
+  [{b:'VerdeMar',c:'Suplementos',com:'18%',d:'20%'},{b:'KidsPlay',c:'Juguetes',com:'14%',d:'15%'},{b:'BrewCo',c:'Café premium',com:'20%',d:'25%'}].map(function(x){ return '<div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-p">'+x.b[0]+'</div><div><div style="font-size:13px;font-weight:500">'+x.b+'</div><div style="font-size:12px;color:var(--muted)">'+x.c+'</div></div></div><div style="text-align:right"><div style="font-size:16px;font-weight:600;color:var(--coral)">'+x.com+'</div><div style="font-size:11px;color:var(--muted)">'+x.d+' desc.</div></div></div>'; }).join('')+
+  '</div></div>';
 }
 
-function iCamp(){
-  const data=[{brand:'VerdeMar',prod:'Suplementos naturales',cat:'Salud',com:'18%',desc:'20%',aud:'18-35',min:'5K+'},{brand:'KidsPlay',prod:'Juguetes educativos',cat:'Infantil',com:'14%',desc:'15%',aud:'25-40',min:'10K+'},{brand:'BrewCo',prod:'Café premium',cat:'Gastro',com:'20%',desc:'25%',aud:'22-45',min:'3K+'},{brand:'TechGear',prod:'Accesorios tech',cat:'Tech',com:'12%',desc:'18%',aud:'18-30',min:'8K+'},{brand:'PetLove',prod:'Comida mascotas',cat:'Mascotas',com:'22%',desc:'20%',aud:'Todos',min:'2K+'}];
+function crCamp(){
   return hdr('Campañas disponibles','Encontrá marcas que se alineen con tu audiencia')+
-  `<div style="display:flex;gap:8px;margin-bottom:1rem"><select><option>Todas las categorías</option><option>Salud</option><option>Tech</option><option>Moda</option></select><select><option>Mayor comisión</option><option>Más reciente</option></select></div>`+
-  data.map(c=>`<div class="card"><div style="display:flex;gap:12px;align-items:flex-start"><div class="av av-p av-sq" style="width:44px;height:44px;">${c.brand[0]}</div><div style="flex:1"><div class="row"><div><div style="font-size:15px;font-weight:600">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.prod} · ${c.cat}</div></div><span class="badge b-ok">Abierta</span></div><div style="display:flex;gap:1.5rem;margin-top:12px;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-size:17px;font-weight:600;color:var(--coral)">${c.com}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-size:17px;font-weight:600;color:var(--purple)">${c.desc}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Audiencia</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.aud}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Seg. mín.</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.min}</div></div></div></div><button class="btn-p" style="flex-shrink:0;margin-top:4px">Aplicar</button></div></div>`).join('');
+  '<div style="display:flex;gap:8px;margin-bottom:1rem"><select><option>Todas las categorías</option><option>Salud</option><option>Tech</option><option>Moda</option></select><select><option>Mayor comisión</option><option>Más reciente</option></select></div>'+
+  [{b:'VerdeMar',p:'Suplementos naturales',c:'Salud',com:'18%',d:'20%',a:'18-35',m:'5K+'},{b:'KidsPlay',p:'Juguetes educativos',c:'Infantil',com:'14%',d:'15%',a:'25-40',m:'10K+'},{b:'BrewCo',p:'Café premium',c:'Gastro',com:'20%',d:'25%',a:'22-45',m:'3K+'},{b:'TechGear',p:'Accesorios tech',c:'Tech',com:'12%',d:'18%',a:'18-30',m:'8K+'},{b:'PetLove',p:'Comida mascotas',c:'Mascotas',com:'22%',d:'20%',a:'Todos',m:'2K+'}].map(function(x){ return '<div class="card"><div style="display:flex;gap:12px;align-items:flex-start"><div class="av av-p av-sq" style="width:44px;height:44px">'+x.b[0]+'</div><div style="flex:1"><div class="row"><div><div style="font-size:15px;font-weight:600">'+x.b+'</div><div style="font-size:12px;color:var(--muted)">'+x.p+' · '+x.c+'</div></div><span class="badge b-ok">Abierta</span></div><div style="display:flex;gap:1.5rem;margin-top:12px;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-size:17px;font-weight:600;color:var(--coral)">'+x.com+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-size:17px;font-weight:600;color:var(--purple)">'+x.d+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Audiencia</div><div style="font-size:14px;font-weight:500;margin-top:2px">'+x.a+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Seg. mín.</div><div style="font-size:14px;font-weight:500;margin-top:2px">'+x.m+'</div></div></div></div><button class="btn-p" style="flex-shrink:0;margin-top:4px">Aplicar</button></div></div>'; }).join('');
 }
 
-function iContracts(){
-  const data=[{brand:'NutriBox',prod:'Cajas de snacks',desde:'Ene 2025',com:'12%',desc:'20%',code:'CAMILA20',sales:48,st:'Activo'},{brand:'FlowSport',prod:'Ropa deportiva',desde:'Feb 2025',com:'15%',desc:'18%',code:'FLOW-CAM',sales:31,st:'Activo'},{brand:'SkinGlow',prod:'Skincare set',desde:'Mar 2025',com:'10%',desc:'15%',code:'SKIN15',sales:0,st:'En revisión'},{brand:'CookMaster',prod:'Utensilios',desde:'Nov 2024',com:'13%',desc:'12%',code:'COOK-CAM',sales:89,st:'Completado'}];
-  return hdr('Mis contratos','Todos tus acuerdos activos con marcas')+data.map(c=>`<div class="card"><div class="row" style="margin-bottom:12px"><div style="display:flex;gap:10px;align-items:center"><div class="av av-o">${c.brand[0]}</div><div><div style="font-weight:600">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.prod} · Desde ${c.desde}</div></div></div><span class="badge ${c.st==='Activo'?'b-ok':c.st==='En revisión'?'b-warn':'b-info'}">${c.st}</span></div><div style="display:flex;gap:2rem;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-weight:600;color:var(--coral);font-size:16px">${c.com}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-weight:600;color:var(--purple);font-size:16px">${c.desc}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Tu código</div><div class="mono" style="margin-top:4px">${c.code}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Ventas</div><div style="font-weight:600;font-size:16px">${c.sales}</div></div></div></div>`).join('');
+function crContr(){
+  return hdr('Mis contratos','Todos tus acuerdos activos con marcas')+
+  [{b:'NutriBox',p:'Cajas de snacks',d:'Ene 2025',com:'12%',desc:'20%',code:'CAMILA20',s:48,st:'Activo'},{b:'FlowSport',p:'Ropa deportiva',d:'Feb 2025',com:'15%',desc:'18%',code:'FLOW-CAM',s:31,st:'Activo'},{b:'SkinGlow',p:'Skincare set',d:'Mar 2025',com:'10%',desc:'15%',code:'SKIN15',s:0,st:'En revisión'},{b:'CookMaster',p:'Utensilios',d:'Nov 2024',com:'13%',desc:'12%',code:'COOK-CAM',s:89,st:'Completado'}].map(function(x){ return '<div class="card"><div class="row" style="margin-bottom:12px"><div style="display:flex;gap:10px;align-items:center"><div class="av av-o">'+x.b[0]+'</div><div><div style="font-weight:600">'+x.b+'</div><div style="font-size:12px;color:var(--muted)">'+x.p+' · Desde '+x.d+'</div></div></div><span class="badge '+(x.st==='Activo'?'b-ok':x.st==='En revisión'?'b-warn':'b-info')+'">'+x.st+'</span></div><div style="display:flex;gap:2rem;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-weight:600;color:var(--coral);font-size:16px">'+x.com+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-weight:600;color:var(--purple);font-size:16px">'+x.desc+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Tu código</div><div class="mono" style="margin-top:4px">'+x.code+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Ventas</div><div style="font-weight:600;font-size:16px">'+x.s+'</div></div></div></div>'; }).join('');
 }
 
-function iEarnings(){
-  const months=[{m:'Oct',v:310},{m:'Nov',v:480},{m:'Dic',v:620},{m:'Ene',v:540},{m:'Feb',v:470},{m:'Mar',v:420}];
-  const max=620;
-  return hdr('Mis comisiones','Historial de ganancias por ventas referidas')+`
-  <div class="mgrid3" style="margin-bottom:1.25rem">
-    <div class="mcard"><div class="mlbl">Total ganado</div><div class="mval" style="color:var(--coral)">$2,840</div><div class="msub">Desde el inicio</div></div>
-    <div class="mcard"><div class="mlbl">Este mes</div><div class="mval">$420</div><div class="msub">-10% vs anterior</div></div>
-    <div class="mcard"><div class="mlbl">Próximo cobro</div><div class="mval" style="color:var(--purple)">$420</div><div class="msub">1 de abril</div></div>
-  </div>
-  <div class="card" style="margin-bottom:1rem">
-    <div class="stitle">Tendencia mensual</div>
-    <div class="chart-bars">
-      ${months.map(m=>`<div class="bar-col"><div style="font-size:10px;color:var(--muted)">$${m.v}</div><div class="bar-rect" style="height:${Math.round((m.v/max)*80)}px;background:${m.m==='Mar'?'var(--coral)':'var(--coral-light)'}"></div><div style="font-size:11px;color:var(--muted)">${m.m}</div></div>`).join('')}
-    </div>
-  </div>
-  <div class="card">
-    <div class="stitle">Detalle por marca</div>
-    ${[{brand:'NutriBox',sales:48,amt:'$187',pct:'12%'},{brand:'FlowSport',sales:31,amt:'$155',pct:'15%'},{brand:'CookMaster',sales:89,amt:'$312',pct:'13%'}].map(r=>`<div style="display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)"><div class="av av-o" style="margin-right:10px;width:32px;height:32px;font-size:12px">${r.brand[0]}</div><div style="flex:1"><div style="font-size:13px;font-weight:500">${r.brand}</div><div style="font-size:12px;color:var(--muted)">${r.sales} ventas · ${r.pct}</div></div><div style="font-size:15px;font-weight:600">${r.amt}</div></div>`).join('')}
-  </div>`;
+function crEarn(){
+  var months=[{m:'Oct',v:310},{m:'Nov',v:480},{m:'Dic',v:620},{m:'Ene',v:540},{m:'Feb',v:470},{m:'Mar',v:420}];
+  var max=620;
+  return hdr('Mis comisiones','Historial de ganancias por ventas referidas')+
+  '<div class="mgrid3"><div class="mcard"><div class="mlbl">Total ganado</div><div class="mval" style="color:var(--coral)">$2,840</div><div class="msub">Desde el inicio</div></div><div class="mcard"><div class="mlbl">Este mes</div><div class="mval">$420</div><div class="msub">-10% vs anterior</div></div><div class="mcard"><div class="mlbl">Próximo cobro</div><div class="mval" style="color:var(--purple)">$420</div><div class="msub">1 de abril</div></div></div>'+
+  '<div class="card" style="margin-bottom:1rem"><div class="stitle">Tendencia mensual</div><div class="chart-bars">'+months.map(function(m){ return '<div class="bar-col"><div style="font-size:10px;color:var(--muted)">$'+m.v+'</div><div class="bar-rect" style="height:'+Math.round((m.v/max)*80)+'px;background:'+(m.m==='Mar'?'var(--coral)':'var(--coral-light)')+'"></div><div style="font-size:11px;color:var(--muted)">'+m.m+'</div></div>'; }).join('')+'</div></div>'+
+  '<div class="card"><div class="stitle">Detalle por marca</div>'+
+  [{b:'NutriBox',s:48,a:'$187',p:'12%'},{b:'FlowSport',s:31,a:'$155',p:'15%'},{b:'CookMaster',s:89,a:'$312',p:'13%'}].map(function(r){ return '<div style="display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)"><div class="av av-o" style="margin-right:10px;width:32px;height:32px;font-size:12px">'+r.b[0]+'</div><div style="flex:1"><div style="font-size:13px;font-weight:500">'+r.b+'</div><div style="font-size:12px;color:var(--muted)">'+r.s+' ventas · '+r.p+'</div></div><div style="font-size:15px;font-weight:600">'+r.a+'</div></div>'; }).join('')+'</div>';
 }
 
-function iProfile(){
-  return hdr('Mi perfil','')+`<div class="grid2">
-  <div class="card">
-    <div style="display:flex;gap:14px;align-items:center;margin-bottom:18px">
-      <div style="width:56px;height:56px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:white">C</div>
-      <div><div style="font-size:16px;font-weight:600">Camila Torres</div><div style="font-size:13px;color:var(--muted)">@camila_fit</div><span class="badge b-info" style="margin-top:5px;display:inline-block">Verificada</span></div>
-    </div>
-    <div style="border-top:1px solid var(--border);padding-top:14px">
-      ${[['Email','camila@mail.com'],['País','Argentina'],['Nicho','Fitness & Bienestar'],['Seguidores','42.000']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}
-    </div>
-    <button class="btn-s" style="width:100%;margin-top:14px">Editar perfil</button>
-  </div>
-  <div>
-    <div class="card" style="margin-bottom:12px">
-      <div class="stitle">Mis redes sociales</div>
-      ${[{red:'Instagram',handle:'@camila_fit',seg:'42K'},{red:'TikTok',handle:'@camilafit_ok',seg:'18K'},{red:'YouTube',handle:'Camila Fit',seg:'8.5K'}].map(r=>`<div class="row sep" style="padding:9px 0;font-size:13px"><div><span style="font-weight:500">${r.red}</span><span style="color:var(--muted);margin-left:8px">${r.handle}</span></div><span style="color:var(--coral);font-weight:600">${r.seg}</span></div>`).join('')}
-      <button class="btn-s" style="width:100%;margin-top:12px;font-size:12px">+ Agregar red social</button>
-    </div>
-    <div class="card">
-      <div class="stitle">Métricas de audiencia</div>
-      ${[{l:'Tasa de engagement',v:'4.8%',c:'var(--coral)',w:78},{l:'Alcance promedio',v:'12.400',c:'var(--purple)',w:62},{l:'Audiencia femenina',v:'68%',c:'var(--teal)',w:68}].map(m=>`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="color:var(--muted)">${m.l}</span><span style="font-weight:600;color:${m.c}">${m.v}</span></div><div class="bar-wrap"><div class="bar-fill" style="width:${m.w}%;background:${m.c}"></div></div></div>`).join('')}
-    </div>
-  </div></div>`;
+function crProf(){
+  return hdr('Mi perfil','')+
+  '<div class="grid2"><div class="card"><div style="display:flex;gap:14px;align-items:center;margin-bottom:18px"><div style="width:56px;height:56px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:white">C</div><div><div style="font-size:16px;font-weight:600">Camila Torres</div><div style="font-size:13px;color:var(--muted)">@camila_fit</div><span class="badge b-info" style="margin-top:5px;display:inline-block">Verificada</span></div></div><div style="border-top:1px solid var(--border);padding-top:14px">'+
+  [['Email','camila@mail.com'],['País','Argentina'],['Nicho','Fitness & Bienestar'],['Seguidores','42.000']].map(function(x){ return '<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">'+x[0]+'</span><span style="font-weight:500">'+x[1]+'</span></div>'; }).join('')+
+  '</div><button class="btn-s" style="width:100%;margin-top:14px">Editar perfil</button></div>'+
+  '<div><div class="card" style="margin-bottom:12px"><div class="stitle">Mis redes sociales</div>'+
+  [{r:'Instagram',h:'@camila_fit',s:'42K'},{r:'TikTok',h:'@camilafit_ok',s:'18K'},{r:'YouTube',h:'Camila Fit',s:'8.5K'}].map(function(r){ return '<div class="row sep" style="padding:9px 0;font-size:13px"><div><span style="font-weight:500">'+r.r+'</span><span style="color:var(--muted);margin-left:8px">'+r.h+'</span></div><span style="color:var(--coral);font-weight:600">'+r.s+'</span></div>'; }).join('')+
+  '<button class="btn-s" style="width:100%;margin-top:12px;font-size:12px">+ Agregar red social</button></div>'+
+  '<div class="card"><div class="stitle">Métricas de audiencia</div>'+
+  [{l:'Tasa de engagement',v:'4.8%',c:'var(--coral)',w:78},{l:'Alcance promedio',v:'12.400',c:'var(--purple)',w:62},{l:'Audiencia femenina',v:'68%',c:'var(--teal)',w:68}].map(function(m){ return '<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="color:var(--muted)">'+m.l+'</span><span style="font-weight:600;color:'+m.c+'">'+m.v+'</span></div><div class="bar-wrap"><div class="bar-fill" style="width:'+m.w+'%;background:'+m.c+'"></div></div></div>'; }).join('')+
+  '</div></div></div>';
 }
 
-/* ─── BRAND VIEWS ─── */
-function bView(){
-  if(sec==='dashboard')return bDash();
-  if(sec==='campaigns')return bCamp();
-  if(sec==='applications')return bApps();
-  if(sec==='analytics')return bAnalytics();
-  if(sec==='settings')return bSettings();
+function brView(){
+  if(S.sec==='dashboard') return brDash();
+  if(S.sec==='campaigns') return brCamp();
+  if(S.sec==='applications') return brApps();
+  if(S.sec==='analytics') return brAnal();
+  if(S.sec==='settings') return brSet();
   return '';
 }
 
-function bDash(){
-  return hdr('Panel de marca · NutriBox ✦','12 nuevas postulaciones esta semana','+ Nueva campaña')+`
-  <div class="mgrid">
-    <div class="mcard"><div class="mlbl">Campañas activas</div><div class="mval" style="color:var(--coral)">3</div><div class="msub up">+1 este mes</div></div>
-    <div class="mcard"><div class="mlbl">Influencers activos</div><div class="mval">18</div><div class="msub">+4 en proceso</div></div>
-    <div class="mcard"><div class="mlbl">Alcance total</div><div class="mval">892K</div><div class="msub">seguidores combinados</div></div>
-    <div class="mcard"><div class="mlbl">Ventas referidas</div><div class="mval" style="color:var(--purple)">$14.200</div><div class="msub up">+22% vs mes ant.</div></div>
-  </div>
-  <div class="grid2">
-    <div>
-      <div class="stitle">Campañas activas</div>
-      ${[{name:'Caja Starter',inf:8,v:245},{name:'Kit Premium',inf:7,v:189},{name:'Snack Pack Kids',inf:3,v:41}].map(c=>`<div class="card row"><div><div style="font-weight:600;font-size:14px">${c.name}</div><div style="font-size:12px;color:var(--muted)">${c.inf} influencers activos</div></div><div style="text-align:right"><div style="font-size:16px;font-weight:600">${c.v} ventas</div><span class="badge b-ok">Activa</span></div></div>`).join('')}
-    </div>
-    <div>
-      <div class="stitle">Últimas postulaciones</div>
-      ${[{n:'@sofi.wellness',seg:'28K',niche:'Bienestar',match:'95%'},{n:'@martin_runner',seg:'15K',niche:'Fitness',match:'88%'},{n:'@luz_vegana',seg:'42K',niche:'Nutrición',match:'92%'}].map(i=>`<div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-p">${i.n[1].toUpperCase()}</div><div><div style="font-size:13px;font-weight:500">${i.n}</div><div style="font-size:12px;color:var(--muted)">${i.seg} · ${i.niche}</div></div></div><div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--teal)">${i.match}</div><div style="font-size:10px;color:var(--hint)">match estimado</div></div></div>`).join('')}
-    </div>
-  </div>`;
+function brDash(){
+  return hdr('Panel de marca · NutriBox ✦','12 nuevas postulaciones esta semana','+ Nueva campaña')+
+  '<div class="mgrid"><div class="mcard"><div class="mlbl">Campañas activas</div><div class="mval" style="color:var(--coral)">3</div><div class="msub up">+1 este mes</div></div><div class="mcard"><div class="mlbl">Influencers activos</div><div class="mval">18</div><div class="msub">+4 en proceso</div></div><div class="mcard"><div class="mlbl">Alcance total</div><div class="mval">892K</div><div class="msub">seguidores combinados</div></div><div class="mcard"><div class="mlbl">Ventas referidas</div><div class="mval" style="color:var(--purple)">$14.200</div><div class="msub up">+22% vs mes ant.</div></div></div>'+
+  '<div class="grid2"><div><div class="stitle">Campañas activas</div>'+
+  [{n:'Caja Starter',i:8,v:245},{n:'Kit Premium',i:7,v:189},{n:'Snack Pack Kids',i:3,v:41}].map(function(x){ return '<div class="card row"><div><div style="font-weight:600;font-size:14px">'+x.n+'</div><div style="font-size:12px;color:var(--muted)">'+x.i+' influencers activos</div></div><div style="text-align:right"><div style="font-size:16px;font-weight:600">'+x.v+' ventas</div><span class="badge b-ok">Activa</span></div></div>'; }).join('')+
+  '</div><div><div class="stitle">Últimas postulaciones</div>'+
+  [{n:'@sofi.wellness',s:'28K',ni:'Bienestar',m:'95%'},{n:'@martin_runner',s:'15K',ni:'Fitness',m:'88%'},{n:'@luz_vegana',s:'42K',ni:'Nutrición',m:'92%'}].map(function(x){ return '<div class="card row"><div style="display:flex;gap:10px;align-items:center"><div class="av av-p">'+x.n[1].toUpperCase()+'</div><div><div style="font-size:13px;font-weight:500">'+x.n+'</div><div style="font-size:12px;color:var(--muted)">'+x.s+' · '+x.ni+'</div></div></div><div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--teal)">'+x.m+'</div><div style="font-size:10px;color:var(--hint)">match</div></div></div>'; }).join('')+
+  '</div></div>';
 }
 
-function bCamp(){
-  const data=[{name:'Caja Starter',prod:'Pack bienvenida',com:'12%',desc:'20%',inf:8,v:245,budget:'$2.400',st:'Activa'},{name:'Kit Premium',prod:'Caja premium mensual',com:'15%',desc:'18%',inf:7,v:189,budget:'$3.200',st:'Activa'},{name:'Snack Pack Kids',prod:'Snacks para niños',com:'10%',desc:'15%',inf:3,v:41,budget:'$800',st:'Activa'},{name:'Summer Edition',prod:'Edición verano',com:'18%',desc:'22%',inf:0,v:0,budget:'$5.000',st:'Borrador'}];
-  return hdr('Mis campañas','','+ Crear campaña')+data.map(c=>`<div class="card"><div class="row" style="margin-bottom:12px"><div><div style="font-size:16px;font-weight:600">${c.name}</div><div style="font-size:12px;color:var(--muted)">${c.prod}</div></div><div style="display:flex;gap:8px;align-items:center"><span class="badge ${c.st==='Activa'?'b-ok':'b-warn'}">${c.st}</span><button class="btn-s" style="font-size:11px;padding:5px 12px">Editar</button></div></div><div style="display:flex;gap:2rem;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-weight:600;color:var(--coral);font-size:17px">${c.com}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-weight:600;color:var(--purple);font-size:17px">${c.desc}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Influencers</div><div style="font-weight:600;font-size:17px">${c.inf}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Ventas</div><div style="font-weight:600;font-size:17px">${c.v}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Presupuesto</div><div style="font-weight:600;font-size:17px">${c.budget}</div></div></div></div>`).join('');
+function brCamp(){
+  return hdr('Mis campañas','','+ Crear campaña')+
+  [{n:'Caja Starter',p:'Pack bienvenida',com:'12%',d:'20%',i:8,v:245,b:'$2.400',st:'Activa'},{n:'Kit Premium',p:'Caja premium mensual',com:'15%',d:'18%',i:7,v:189,b:'$3.200',st:'Activa'},{n:'Snack Pack Kids',p:'Snacks para niños',com:'10%',d:'15%',i:3,v:41,b:'$800',st:'Activa'},{n:'Summer Edition',p:'Edición verano',com:'18%',d:'22%',i:0,v:0,b:'$5.000',st:'Borrador'}].map(function(x){ return '<div class="card"><div class="row" style="margin-bottom:12px"><div><div style="font-size:16px;font-weight:600">'+x.n+'</div><div style="font-size:12px;color:var(--muted)">'+x.p+'</div></div><div style="display:flex;gap:8px;align-items:center"><span class="badge '+(x.st==='Activa'?'b-ok':'b-warn')+'">'+x.st+'</span><button class="btn-s" style="font-size:11px;padding:5px 12px">Editar</button></div></div><div style="display:flex;gap:2rem;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Comisión</div><div style="font-weight:600;color:var(--coral);font-size:17px">'+x.com+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Descuento</div><div style="font-weight:600;color:var(--purple);font-size:17px">'+x.d+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Influencers</div><div style="font-weight:600;font-size:17px">'+x.i+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Ventas</div><div style="font-weight:600;font-size:17px">'+x.v+'</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase;letter-spacing:.4px">Presupuesto</div><div style="font-weight:600;font-size:17px">'+x.b+'</div></div></div></div>'; }).join('');
 }
 
-function bApps(){
-  const data=[{n:'@sofi.wellness',seg:'28K',niche:'Bienestar',eng:'5.2%',camp:'Caja Starter',match:'95%',st:'Pendiente'},{n:'@martin_runner',seg:'15K',niche:'Fitness',eng:'4.1%',camp:'Kit Premium',match:'88%',st:'Pendiente'},{n:'@luz_vegana',seg:'42K',niche:'Nutrición',eng:'6.8%',camp:'Caja Starter',match:'92%',st:'Pendiente'},{n:'@health_pablo',seg:'9K',niche:'Nutrición',eng:'7.2%',camp:'Kit Premium',match:'85%',st:'Aceptado'},{n:'@cocina_vale',seg:'55K',niche:'Gastro',eng:'3.9%',camp:'Snack Pack Kids',match:'72%',st:'Rechazado'}];
-  return hdr('Postulaciones recibidas','3 pendientes de revisión')+data.map(a=>`<div class="card"><div style="display:flex;align-items:center;gap:12px"><div class="av av-p" style="width:44px;height:44px;font-size:16px">${a.n[1].toUpperCase()}</div><div style="flex:1"><div class="row"><div style="font-weight:600;font-size:14px">${a.n}</div><span class="badge ${a.st==='Aceptado'?'b-ok':a.st==='Rechazado'?'b-err':'b-warn'}">${a.st}</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px">${a.seg} seg · ${a.niche} · Eng: ${a.eng}</div><div class="row" style="margin-top:10px"><span style="font-size:12px;background:var(--bg);padding:3px 9px;border-radius:6px;color:var(--muted)">Campaña: ${a.camp}</span><div style="display:flex;gap:8px;align-items:center"><span style="font-size:13px;color:var(--teal);font-weight:600">Match ${a.match}</span>${a.st==='Pendiente'?'<button class="btn-s" style="font-size:11px;padding:4px 10px">Rechazar</button><button class="btn-p" style="font-size:11px;padding:4px 10px">Aceptar</button>':''}</div></div></div></div></div>`).join('');
+function brApps(){
+  return hdr('Postulaciones recibidas','3 pendientes de revisión')+
+  [{n:'@sofi.wellness',s:'28K',ni:'Bienestar',e:'5.2%',c:'Caja Starter',m:'95%',st:'Pendiente'},{n:'@martin_runner',s:'15K',ni:'Fitness',e:'4.1%',c:'Kit Premium',m:'88%',st:'Pendiente'},{n:'@luz_vegana',s:'42K',ni:'Nutrición',e:'6.8%',c:'Caja Starter',m:'92%',st:'Pendiente'},{n:'@health_pablo',s:'9K',ni:'Nutrición',e:'7.2%',c:'Kit Premium',m:'85%',st:'Aceptado'},{n:'@cocina_vale',s:'55K',ni:'Gastro',e:'3.9%',c:'Snack Pack Kids',m:'72%',st:'Rechazado'}].map(function(x){ return '<div class="card"><div style="display:flex;align-items:center;gap:12px"><div class="av av-p" style="width:44px;height:44px;font-size:16px">'+x.n[1].toUpperCase()+'</div><div style="flex:1"><div class="row"><div style="font-weight:600;font-size:14px">'+x.n+'</div><span class="badge '+(x.st==='Aceptado'?'b-ok':x.st==='Rechazado'?'b-err':'b-warn')+'">'+x.st+'</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px">'+x.s+' seg · '+x.ni+' · Eng: '+x.e+'</div><div class="row" style="margin-top:10px"><span style="font-size:12px;background:var(--bg);padding:3px 9px;border-radius:6px;color:var(--muted)">Campaña: '+x.c+'</span><div style="display:flex;gap:8px;align-items:center"><span style="font-size:13px;color:var(--teal);font-weight:600">Match '+x.m+'</span>'+(x.st==='Pendiente'?'<button class="btn-s" style="font-size:11px;padding:4px 10px">Rechazar</button><button class="btn-p" style="font-size:11px;padding:4px 10px">Aceptar</button>':'')+' </div></div></div></div></div>'; }).join('');
 }
 
-function bAnalytics(){
-  const months=[{m:'Oct',v:9200},{m:'Nov',v:11400},{m:'Dic',v:14800},{m:'Ene',v:13200},{m:'Feb',v:12100},{m:'Mar',v:14200}];
-  const max=14800;
-  return hdr('Métricas de rendimiento','Resultados acumulados de todas las campañas')+`
-  <div class="mgrid" style="margin-bottom:1.25rem">
-    <div class="mcard"><div class="mlbl">ROI campañas</div><div class="mval" style="color:var(--teal)">4.2x</div><div class="msub up">+0.8 vs mes ant.</div></div>
-    <div class="mcard"><div class="mlbl">Costo por venta</div><div class="mval">$3.20</div><div class="msub up">-12% eficiencia</div></div>
-    <div class="mcard"><div class="mlbl">Ticket promedio</div><div class="mval" style="color:var(--coral)">$58</div><div class="msub">+$4 este mes</div></div>
-    <div class="mcard"><div class="mlbl">Tasa conversión</div><div class="mval">3.4%</div><div class="msub">Industria: 2.1%</div></div>
-  </div>
-  <div class="grid2">
-    <div class="card">
-      <div class="stitle">Ventas referidas por mes</div>
-      <div class="chart-bars">
-        ${months.map(m=>`<div class="bar-col"><div style="font-size:10px;color:var(--muted)">$${(m.v/1000).toFixed(1)}k</div><div class="bar-rect" style="height:${Math.round((m.v/max)*80)}px;background:${m.m==='Mar'?'var(--coral)':'var(--coral-light)'}"></div><div style="font-size:11px;color:var(--muted)">${m.m}</div></div>`).join('')}
-      </div>
-    </div>
-    <div class="card">
-      <div class="stitle">Top influencers por ventas</div>
-      ${[{n:'@camila_fit',v:89,r:'$5.162'},{n:'@sofi.wellness',v:67,r:'$3.886'},{n:'@luz_vegana',v:54,r:'$3.132'},{n:'@health_pablo',v:35,r:'$2.030'}].map((i,idx)=>`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)"><div style="width:20px;text-align:center;font-size:12px;font-weight:600;color:var(--hint)">${idx+1}</div><div style="flex:1;font-size:13px;font-weight:500">${i.n}</div><div style="font-size:12px;color:var(--muted)">${i.v} ventas</div><div style="font-size:13px;font-weight:600;color:var(--coral)">${i.r}</div></div>`).join('')}
-    </div>
-  </div>`;
+function brAnal(){
+  var months=[{m:'Oct',v:9200},{m:'Nov',v:11400},{m:'Dic',v:14800},{m:'Ene',v:13200},{m:'Feb',v:12100},{m:'Mar',v:14200}];
+  var max=14800;
+  return hdr('Métricas de rendimiento','Resultados acumulados de todas las campañas')+
+  '<div class="mgrid"><div class="mcard"><div class="mlbl">ROI campañas</div><div class="mval" style="color:var(--teal)">4.2x</div><div class="msub up">+0.8 vs mes ant.</div></div><div class="mcard"><div class="mlbl">Costo por venta</div><div class="mval">$3.20</div><div class="msub up">-12% eficiencia</div></div><div class="mcard"><div class="mlbl">Ticket promedio</div><div class="mval" style="color:var(--coral)">$58</div><div class="msub">+$4 este mes</div></div><div class="mcard"><div class="mlbl">Tasa conversión</div><div class="mval">3.4%</div><div class="msub">Industria: 2.1%</div></div></div>'+
+  '<div class="grid2"><div class="card"><div class="stitle">Ventas referidas por mes</div><div class="chart-bars">'+months.map(function(m){ return '<div class="bar-col"><div style="font-size:10px;color:var(--muted)">$'+(m.v/1000).toFixed(1)+'k</div><div class="bar-rect" style="height:'+Math.round((m.v/max)*80)+'px;background:'+(m.m==='Mar'?'var(--coral)':'var(--coral-light)')+'"></div><div style="font-size:11px;color:var(--muted)">'+m.m+'</div></div>'; }).join('')+'</div></div>'+
+  '<div class="card"><div class="stitle">Top influencers por ventas</div>'+
+  [{n:'@camila_fit',v:89,r:'$5.162'},{n:'@sofi.wellness',v:67,r:'$3.886'},{n:'@luz_vegana',v:54,r:'$3.132'},{n:'@health_pablo',v:35,r:'$2.030'}].map(function(x,i){ return '<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)"><div style="width:20px;text-align:center;font-size:12px;font-weight:600;color:var(--hint)">'+(i+1)+'</div><div style="flex:1;font-size:13px;font-weight:500">'+x.n+'</div><div style="font-size:12px;color:var(--muted)">'+x.v+' ventas</div><div style="font-size:13px;font-weight:600;color:var(--coral)">'+x.r+'</div></div>'; }).join('')+
+  '</div></div>';
 }
 
-function bSettings(){
-  return hdr('Configuración de marca','')+`<div class="grid2">
-  <div class="card">
-    <div class="stitle">Datos de la empresa</div>
-    ${[['Nombre','NutriBox'],['Industria','Alimentos & Nutrición'],['País','Argentina'],['Web','nutribox.com.ar'],['Contacto','marketing@nutribox.com']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}
-    <button class="btn-s" style="width:100%;margin-top:14px">Editar datos</button>
-  </div>
-  <div class="card">
-    <div class="stitle">Preferencias de campaña</div>
-    ${[['Nicho preferido','Salud & Nutrición'],['Seg. mínimos','5.000'],['Engagement mín.','3%'],['Ciclo de pago','Mensual'],['Moneda','USD']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}
-    <button class="btn-s" style="width:100%;margin-top:14px">Editar preferencias</button>
-  </div></div>`;
+function brSet(){
+  return hdr('Configuración de marca','')+
+  '<div class="grid2"><div class="card"><div class="stitle">Datos de la empresa</div>'+
+  [['Nombre','NutriBox'],['Industria','Alimentos & Nutrición'],['País','Argentina'],['Web','nutribox.com.ar'],['Contacto','marketing@nutribox.com']].map(function(x){ return '<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">'+x[0]+'</span><span style="font-weight:500">'+x[1]+'</span></div>'; }).join('')+
+  '<button class="btn-s" style="width:100%;margin-top:14px">Editar datos</button></div>'+
+  '<div class="card"><div class="stitle">Preferencias de campaña</div>'+
+  [['Nicho preferido','Salud & Nutrición'],['Seg. mínimos','5.000'],['Engagement mín.','3%'],['Ciclo de pago','Mensual'],['Moneda','USD']].map(function(x){ return '<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">'+x[0]+'</span><span style="font-weight:500">'+x[1]+'</span></div>'; }).join('')+
+  '<button class="btn-s" style="width:100%;margin-top:14px">Editar preferencias</button></div></div>';
 }
 
-render();
+ga('login');
 </script>
 </body>
 </html>
