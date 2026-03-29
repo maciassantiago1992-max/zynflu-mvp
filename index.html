@@ -12,6 +12,7 @@
   --coral:#D85A30;--coral-light:#FAECE7;--coral-dark:#993C1D;
   --purple:#534AB7;--purple-light:#EEEDFE;
   --teal:#1D9E75;--teal-light:#E1F5EE;
+  --admin:#1A1A18;--admin-light:#F1EFE8;
   --bg:#F7F6F3;--card:#FFFFFF;--border:#E8E6E0;
   --text:#1A1A18;--muted:#6B6A65;--hint:#9C9B96;
 }
@@ -32,10 +33,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-main{width:100%;padding:11px;background:var(--coral);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'DM Sans',sans-serif;transition:background .15s;}
 .btn-main:hover{background:var(--coral-dark);}
 .btn-main:disabled{opacity:.4;cursor:not-allowed;}
-.btn-google{width:100%;padding:10px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-weight:500;transition:background .12s;}
-.btn-google:hover{background:var(--bg);}
-.divider{display:flex;align-items:center;gap:10px;margin:14px 0;font-size:12px;color:var(--hint);}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
 .auth-link{font-size:13px;color:var(--muted);text-align:center;margin-top:16px;}
 .auth-link b{color:var(--purple);cursor:pointer;font-weight:500;}
 .auth-link b:hover{text-decoration:underline;}
@@ -53,9 +50,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .atag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:6px;font-weight:600;}
 .atag-cr{background:var(--coral-light);color:var(--coral-dark);}
 .atag-br{background:var(--purple-light);color:var(--purple);}
+.atag-ad{background:var(--admin);color:white;}
 .success-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;}
 .error-msg{background:#FCEBEB;color:#A32D2D;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none;}
-.loading{opacity:.6;pointer-events:none;}
+
+/* Categorías múltiples */
+.niche-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.niche-pill{padding:6px 14px;border-radius:20px;border:1px solid var(--border);font-size:12px;cursor:pointer;background:var(--card);color:var(--muted);transition:all .15s;}
+.niche-pill:hover{border-color:var(--coral);color:var(--coral);}
+.niche-pill.sel{background:var(--coral-light);border-color:var(--coral);color:var(--coral-dark);font-weight:500;}
 
 /* ─── APP ─── */
 #app-screen{display:none;flex-direction:column;min-height:100vh;}
@@ -74,7 +77,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .seclabel{font-size:10px;color:var(--hint);padding:6px 10px 8px;text-transform:uppercase;letter-spacing:.7px;}
 .nitem{padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer;color:var(--muted);border:none;background:transparent;text-align:left;width:100%;display:flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;transition:all .12s;}
 .nitem.on{background:var(--coral-light);color:var(--coral-dark);font-weight:500;}
-.nitem:hover:not(.on){background:var(--bg);}
+.nitem.on-admin{background:var(--admin);color:white;font-weight:500;}
+.nitem:hover:not(.on):not(.on-admin){background:var(--bg);}
 .nicn{font-size:14px;width:18px;text-align:center;}
 .content{flex:1;padding:1.5rem;overflow-y:auto;background:var(--bg);}
 .pgheader{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;}
@@ -83,6 +87,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
 .mgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
 .mcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;}
+.mcard.dark{background:var(--admin);border-color:var(--admin);}
+.mcard.dark .mlbl{color:#888780;}
+.mcard.dark .mval{color:white;}
+.mcard.dark .msub{color:#888780;}
 .mlbl{font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
 .mval{font-size:24px;font-weight:600;font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px;}
 .msub{font-size:11px;color:var(--hint);margin-top:4px;}
@@ -98,6 +106,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .b-warn{background:#FAEEDA;color:#854F0B;}
 .b-info{background:var(--purple-light);color:var(--purple);}
 .b-err{background:#FCEBEB;color:#A32D2D;}
+.b-dark{background:var(--admin);color:white;}
 .btn-p{background:var(--coral);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;}
 .btn-p:hover{background:var(--coral-dark);}
 .btn-s{background:transparent;color:var(--text);border:1px solid var(--border);padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}
@@ -113,6 +122,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .bar-rect{width:100%;border-radius:4px 4px 0 0;}
 select{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'DM Sans',sans-serif;}
 .mono{font-family:monospace;font-size:12px;background:var(--bg);padding:2px 7px;border-radius:4px;color:var(--text);}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;}
+.admin-table th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:8px 12px;border-bottom:1px solid var(--border);}
+.admin-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.admin-table tr:last-child td{border-bottom:none;}
+.alert-box{background:#FAEEDA;border:1px solid #EF9F27;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
 </style>
 </head>
 <body>
@@ -126,7 +140,7 @@ select{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-rad
 <div id="app-screen">
   <div class="topbar">
     <span class="logo">Zyn<span>flu</span></span>
-    <span class="tagline">Conectando marcas con influencers</span>
+    <span class="tagline" id="topbar-tagline">Conectando marcas con influencers</span>
     <div id="topbar-right" style="margin-left:auto;display:flex;align-items:center;gap:10px;"></div>
   </div>
   <div class="layout">
@@ -136,164 +150,154 @@ select{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-rad
 </div>
 
 <script>
-/* ═══════════════════════════════
-   SUPABASE
-═══════════════════════════════ */
-const SUPABASE_URL = 'https://vxinlidikyepkxcariil.supabase.co';
-const SUPABASE_KEY = 'sb_publishable__Qc5XTQnySqWyzq-uWd9Ag_Ae6eE1No';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+/* SUPABASE */
+const SUPABASE_URL='https://vxinlidikyepkxcariil.supabase.co';
+const SUPABASE_KEY='sb_publishable__Qc5XTQnySqWyzq-uWd9Ag_Ae6eE1No';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-/* ═══════════════════════════════
-   AUTH STATE
-═══════════════════════════════ */
-let authState = { screen: 'login', role: null };
-let currentUser = null;
+/* STATE */
+let authState={screen:'login',role:null};
+let currentUser=null;
+let selectedNiches=[];
 
-function showError(msg) {
-  const el = document.getElementById('auth-error');
-  if(el){ el.textContent = msg; el.style.display = 'block'; }
-}
-function hideError() {
-  const el = document.getElementById('auth-error');
-  if(el) el.style.display = 'none';
-}
-function setLoading(loading) {
-  const btn = document.querySelector('.btn-main');
-  if(btn){ btn.disabled = loading; btn.textContent = loading ? 'Cargando...' : btn.dataset.label; }
-}
+const NICHES=['Fitness & Bienestar','Moda & Estilo','Nutrición','Gastronomía','Tecnología','Gaming','Viajes','Lifestyle','Deporte','Maternidad & Familia','Belleza & Skincare','Educación','Mascotas','Arte & Creatividad','Música','Sustentabilidad','Finanzas personales','Otro'];
+
+/* AUTH HELPERS */
+function showError(msg){const el=document.getElementById('auth-error');if(el){el.textContent=msg;el.style.display='block';}}
+function hideError(){const el=document.getElementById('auth-error');if(el)el.style.display='none';}
 
 /* LOGIN */
-async function doLogin() {
+async function doLogin(){
   hideError();
-  const email = document.getElementById('a-email').value;
-  const pass = document.getElementById('a-pass').value;
-  if(!email || !pass){ showError('Completá email y contraseña'); return; }
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Ingresando...';
-  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
-  if(error){ showError('Email o contraseña incorrectos'); btn.disabled = false; btn.textContent = 'Ingresar'; return; }
-  currentUser = data.user;
+  const email=document.getElementById('a-email').value;
+  const pass=document.getElementById('a-pass').value;
+  if(!email||!pass){showError('Completá email y contraseña');return;}
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Ingresando...';
+  const{data,error}=await sb.auth.signInWithPassword({email,password:pass});
+  if(error){showError('Email o contraseña incorrectos');btn.disabled=false;btn.textContent='Ingresar';return;}
+  currentUser=data.user;
   await loadUserAndEnterApp();
 }
 
 /* REGISTRO */
-async function doRegister() {
+async function doRegister(){
   hideError();
-  const name = document.getElementById('a-name').value;
-  const email = document.getElementById('a-email').value;
-  const pass = document.getElementById('a-pass').value;
-  if(!name || !email || !pass){ showError('Completá todos los campos'); return; }
-  if(pass.length < 8){ showError('La contraseña debe tener mínimo 8 caracteres'); return; }
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Creando cuenta...';
-  const { data, error } = await sb.auth.signUp({
-    email, password: pass,
-    options: { data: { full_name: name, role: authState.role || 'creator' } }
-  });
-  if(error){ showError(error.message); btn.disabled = false; btn.textContent = 'Crear cuenta'; return; }
-  currentUser = data.user;
+  const name=document.getElementById('a-name').value;
+  const email=document.getElementById('a-email').value;
+  const pass=document.getElementById('a-pass').value;
+  if(!name||!email||!pass){showError('Completá todos los campos');return;}
+  if(pass.length<8){showError('La contraseña debe tener mínimo 8 caracteres');return;}
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Creando cuenta...';
+  const{data,error}=await sb.auth.signUp({email,password:pass,options:{data:{full_name:name,role:authState.role||'creator'}}});
+  if(error){showError(error.message);btn.disabled=false;btn.textContent='Crear cuenta';return;}
+  currentUser=data.user;
   goAuth('role-select');
 }
 
-/* ONBOARDING CREATOR */
-async function doOnboardingCreator() {
-  hideError();
-  const handle = document.getElementById('ob-handle').value;
-  const niche = document.getElementById('ob-niche').value;
-  const country = document.getElementById('ob-country').value;
-  if(!handle){ showError('El handle es obligatorio'); return; }
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Guardando...';
-  const { error } = await sb.from('creator_profiles').upsert({
-    user_id: currentUser.id,
-    handle: handle.replace('@',''),
-    niche, country, status: 'pending'
+/* TOGGLE NICHO */
+function toggleNiche(n){
+  if(selectedNiches.includes(n)){selectedNiches=selectedNiches.filter(x=>x!==n);}
+  else{selectedNiches.push(n);}
+  document.querySelectorAll('.niche-pill').forEach(p=>{
+    p.classList.toggle('sel',selectedNiches.includes(p.dataset.n));
   });
-  if(error){ showError('Error al guardar. Intentá de nuevo.'); btn.disabled = false; btn.textContent = 'Continuar'; return; }
+}
+
+/* ONBOARDING CREATOR */
+async function doOnboardingCreator(){
+  hideError();
+  const handle=document.getElementById('ob-handle').value;
+  const country=document.getElementById('ob-country').value;
+  if(!handle){showError('El handle es obligatorio');return;}
+  if(selectedNiches.length===0){showError('Elegí al menos una categoría');return;}
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Guardando...';
+  const{error}=await sb.from('creator_profiles').upsert({
+    user_id:currentUser.id,
+    handle:handle.replace('@',''),
+    niche:selectedNiches.join(', '),
+    country,status:'pending'
+  });
+  if(error){showError('Error al guardar. Intentá de nuevo.');btn.disabled=false;btn.textContent='Continuar';return;}
   goAuth('onboarding-creator-2');
 }
 
 /* ONBOARDING CREATOR REDES */
-async function doOnboardingCreatorRedes() {
-  const ig = document.getElementById('ob-ig').value;
-  const tt = document.getElementById('ob-tt').value;
-  const yt = document.getElementById('ob-yt').value;
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Guardando...';
+async function doOnboardingCreatorRedes(){
+  const ig=document.getElementById('ob-ig').value;
+  const tt=document.getElementById('ob-tt').value;
+  const yt=document.getElementById('ob-yt').value;
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Guardando...';
   await sb.from('creator_profiles').update({
-    instagram_handle: ig.replace('@',''),
-    tiktok_handle: tt.replace('@',''),
-    youtube_handle: yt
-  }).eq('user_id', currentUser.id);
+    instagram_handle:ig.replace('@',''),
+    tiktok_handle:tt.replace('@',''),
+    youtube_handle:yt
+  }).eq('user_id',currentUser.id);
   goAuth('success-creator');
 }
 
 /* ONBOARDING BRAND */
-async function doOnboardingBrand() {
+async function doOnboardingBrand(){
   hideError();
-  const company = document.getElementById('ob-company').value;
-  const industry = document.getElementById('ob-industry').value;
-  const website = document.getElementById('ob-website').value;
-  if(!company){ showError('El nombre de la marca es obligatorio'); return; }
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Guardando...';
-  const { error } = await sb.from('brand_profiles').upsert({
-    user_id: currentUser.id,
-    company_name: company,
-    industry, website, status: 'active'
+  const company=document.getElementById('ob-company').value;
+  const industry=document.getElementById('ob-industry').value;
+  const website=document.getElementById('ob-website').value;
+  if(!company){showError('El nombre de la marca es obligatorio');return;}
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Guardando...';
+  const{error}=await sb.from('brand_profiles').upsert({
+    user_id:currentUser.id,company_name:company,industry,website,status:'active'
   });
-  if(error){ showError('Error al guardar. Intentá de nuevo.'); btn.disabled = false; btn.textContent = 'Continuar'; return; }
+  if(error){showError('Error: '+error.message);btn.disabled=false;btn.textContent='Continuar';return;}
   goAuth('onboarding-brand-2');
 }
 
 /* ONBOARDING BRAND PREFS */
-async function doOnboardingBrandPrefs() {
-  const niche = document.getElementById('ob-niche-brand').value;
-  const minF = document.getElementById('ob-minfollowers').value;
-  const platform = document.getElementById('ob-platform').value;
-  const btn = document.querySelector('.btn-main');
-  btn.disabled = true; btn.textContent = 'Guardando...';
+async function doOnboardingBrandPrefs(){
+  const niche=document.getElementById('ob-niche-brand').value;
+  const minF=document.getElementById('ob-minfollowers').value;
+  const platform=document.getElementById('ob-platform').value;
+  const btn=document.querySelector('.btn-main');
+  btn.disabled=true;btn.textContent='Guardando...';
   await sb.from('brand_profiles').update({
-    preferred_niche: niche,
-    min_followers: parseInt(minF) || 0,
-    ecommerce_platform: platform
-  }).eq('user_id', currentUser.id);
+    preferred_niche:niche,min_followers:parseInt(minF)||0,ecommerce_platform:platform
+  }).eq('user_id',currentUser.id);
   goAuth('success-brand');
 }
 
-/* CARGAR USUARIO Y ENTRAR */
-async function loadUserAndEnterApp() {
-  const { data: userData } = await sb.from('users').select('role').eq('id', currentUser.id).single();
-  const userRole = userData?.role || 'creator';
-  enterApp(userRole === 'brand' ? 'brand' : 'influencer');
+/* CARGAR USUARIO */
+async function loadUserAndEnterApp(){
+  const{data:userData}=await sb.from('users').select('role').eq('id',currentUser.id).single();
+  const userRole=userData?.role||currentUser?.user_metadata?.role||'creator';
+  if(userRole==='admin'){enterApp('admin');}
+  else if(userRole==='brand'){enterApp('brand');}
+  else{enterApp('influencer');}
 }
 
 /* LOGOUT */
-async function logout() {
+async function logout(){
   await sb.auth.signOut();
-  currentUser = null;
-  document.getElementById('app-screen').style.display = 'none';
-  document.getElementById('auth-screen').style.display = 'flex';
-  authState = { screen: 'login', role: null };
+  currentUser=null;
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+  authState={screen:'login',role:null};
+  selectedNiches=[];
   renderAuth();
 }
 
-/* CHEQUEAR SESIÓN AL CARGAR */
-async function checkSession() {
-  const { data: { session } } = await sb.auth.getSession();
-  if(session) {
-    currentUser = session.user;
-    await loadUserAndEnterApp();
-  } else {
-    renderAuth();
-  }
+/* CHECK SESSION */
+async function checkSession(){
+  const{data:{session}}=await sb.auth.getSession();
+  if(session){currentUser=session.user;await loadUserAndEnterApp();}
+  else{renderAuth();}
 }
 
-/* ═══════════════════════════════
-   AUTH SCREENS
-═══════════════════════════════ */
-const authScreens = {
-  login: () => `
+/* AUTH SCREENS */
+const authScreens={
+  login:()=>`
     <div class="auth-logo">Zyn<span>flu</span></div>
     <div class="auth-sub">Conectá marcas con influencers</div>
     <div class="auth-card">
@@ -304,7 +308,7 @@ const authScreens = {
     </div>
     <div class="auth-link">¿No tenés cuenta? <b onclick="goAuth('register')">Registrate gratis</b></div>
   `,
-  register: () => `
+  register:()=>`
     <div class="auth-logo">Zyn<span>flu</span></div>
     <div class="auth-sub">Creá tu cuenta gratuita</div>
     <div class="auth-card">
@@ -316,7 +320,7 @@ const authScreens = {
     </div>
     <div class="auth-link">¿Ya tenés cuenta? <b onclick="goAuth('login')">Ingresá</b></div>
   `,
-  'role-select': () => `
+  'role-select':()=>`
     <div class="steps-bar"><div class="step-dot on"></div><div class="step-dot"></div><div class="step-dot"></div></div>
     <div class="auth-logo">Zyn<span>flu</span></div>
     <div class="auth-sub">¿Cómo vas a usar Zynflu?</div>
@@ -325,32 +329,33 @@ const authScreens = {
         <div class="role-card ${authState.role==='creator'?'sel':''}" onclick="selectRole('creator')">
           <div class="role-icon">◉</div>
           <div class="role-name">Soy creator</div>
-          <div class="role-desc">Quiero monetizar mi audiencia con marcas</div>
+          <div class="role-desc">Quiero monetizar mi audiencia</div>
         </div>
         <div class="role-card ${authState.role==='brand'?'sel':''}" onclick="selectRole('brand')">
           <div class="role-icon">◈</div>
           <div class="role-name">Soy marca</div>
-          <div class="role-desc">Quiero vender más con influencers</div>
+          <div class="role-desc">Quiero vender con influencers</div>
         </div>
       </div>
       <button class="btn-main" onclick="goOnboarding()" ${!authState.role?'disabled':''}>Continuar</button>
     </div>
   `,
-  'onboarding-creator-1': () => `
+  'onboarding-creator-1':()=>`
     <div class="steps-bar"><div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot"></div></div>
     <div class="step-label">Paso 2 de 3 · <span class="atag atag-cr">Creator</span></div>
     <div class="auth-card">
       <div id="auth-error" class="error-msg"></div>
       <div style="font-size:16px;font-weight:600;margin-bottom:18px">Tu perfil público</div>
       <div class="auth-field"><label class="auth-label">Handle / usuario</label><input class="auth-input" type="text" id="ob-handle" placeholder="@tu_usuario"/></div>
-      <div class="auth-field"><label class="auth-label">Nicho principal</label>
-        <select class="auth-select" id="ob-niche"><option>Fitness & Bienestar</option><option>Moda & Estilo</option><option>Tecnología</option><option>Gastronomía</option><option>Viajes</option><option>Gaming</option><option>Nutrición</option><option>Otro</option></select>
+      <div class="auth-field">
+        <label class="auth-label">Categorías (elegí todas las que apliquen)</label>
+        <div class="niche-grid">${NICHES.map(n=>`<div class="niche-pill" data-n="${n}" onclick="toggleNiche('${n}')">${n}</div>`).join('')}</div>
       </div>
-      <div class="auth-field"><label class="auth-label">País</label><input class="auth-input" type="text" id="ob-country" placeholder="Uruguay"/></div>
-      <button class="btn-main" onclick="doOnboardingCreator()">Continuar</button>
+      <div class="auth-field" style="margin-top:14px"><label class="auth-label">País</label><input class="auth-input" type="text" id="ob-country" placeholder="Uruguay"/></div>
+      <button class="btn-main" style="margin-top:8px" onclick="doOnboardingCreator()">Continuar</button>
     </div>
   `,
-  'onboarding-creator-2': () => `
+  'onboarding-creator-2':()=>`
     <div class="steps-bar"><div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot on"></div></div>
     <div class="step-label">Paso 3 de 3 · <span class="atag atag-cr">Creator</span></div>
     <div class="auth-card">
@@ -361,7 +366,7 @@ const authScreens = {
       <button class="btn-main" onclick="doOnboardingCreatorRedes()">Finalizar y entrar</button>
     </div>
   `,
-  'onboarding-brand-1': () => `
+  'onboarding-brand-1':()=>`
     <div class="steps-bar"><div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot"></div></div>
     <div class="step-label">Paso 2 de 3 · <span class="atag atag-br">Marca</span></div>
     <div class="auth-card">
@@ -375,7 +380,7 @@ const authScreens = {
       <button class="btn-main" onclick="doOnboardingBrand()">Continuar</button>
     </div>
   `,
-  'onboarding-brand-2': () => `
+  'onboarding-brand-2':()=>`
     <div class="steps-bar"><div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot on"></div></div>
     <div class="step-label">Paso 3 de 3 · <span class="atag atag-br">Marca</span></div>
     <div class="auth-card">
@@ -392,7 +397,7 @@ const authScreens = {
       <button class="btn-main" onclick="doOnboardingBrandPrefs()">Finalizar y entrar</button>
     </div>
   `,
-  'success-creator': () => `
+  'success-creator':()=>`
     <div class="auth-card" style="text-align:center;padding:36px 28px">
       <div class="success-icon" style="background:var(--coral-light)">✦</div>
       <div style="font-size:19px;font-weight:600;margin-bottom:8px">Todo listo, creator</div>
@@ -401,7 +406,7 @@ const authScreens = {
       <button class="btn-main" onclick="enterApp('influencer')">Ir a mi dashboard →</button>
     </div>
   `,
-  'success-brand': () => `
+  'success-brand':()=>`
     <div class="auth-card" style="text-align:center;padding:36px 28px">
       <div class="success-icon" style="background:var(--purple-light)">◈</div>
       <div style="font-size:19px;font-weight:600;margin-bottom:8px">Bienvenida, marca</div>
@@ -412,50 +417,165 @@ const authScreens = {
   `,
 };
 
-function goAuth(s){ authState.screen=s; renderAuth(); }
-function selectRole(r){ authState.role=r; renderAuth(); }
-function goOnboarding(){ if(!authState.role)return; goAuth(authState.role==='creator'?'onboarding-creator-1':'onboarding-brand-1'); }
-function renderAuth(){ document.getElementById('auth-content').innerHTML=authScreens[authState.screen](); }
+function goAuth(s){authState.screen=s;renderAuth();}
+function selectRole(r){authState.role=r;renderAuth();}
+function goOnboarding(){if(!authState.role)return;goAuth(authState.role==='creator'?'onboarding-creator-1':'onboarding-brand-1');}
+function renderAuth(){document.getElementById('auth-content').innerHTML=authScreens[authState.screen]();}
 
 function enterApp(appRole){
   document.getElementById('auth-screen').style.display='none';
   document.getElementById('app-screen').style.display='flex';
-  role = appRole==='brand'?'brand':'influencer';
-  sec = 'dashboard';
+  role=appRole;sec='dashboard';
   renderTopbarRight();
   render();
 }
 
 function renderTopbarRight(){
+  const isAdmin=role==='admin';
   const isInf=role==='influencer';
-  const name = currentUser?.user_metadata?.full_name || (isInf?'Creator':'Marca');
-  const initial = name.charAt(0).toUpperCase();
-  document.getElementById('topbar-right').innerHTML=`
-    <div class="role-sw">
-      <button class="rbtn ${isInf?'on':''}" onclick="switchRole('influencer',this)">Influencer</button>
-      <button class="rbtn ${!isInf?'on':''}" onclick="switchRole('brand',this)">Marca</button>
-    </div>
-    <div class="user-av" style="background:${isInf?'var(--coral-light)':'var(--purple-light)'};color:${isInf?'var(--coral)':'var(--purple)'}">${initial}</div>
-    <button class="logout-btn" onclick="logout()">Salir</button>
-  `;
+  const name=currentUser?.user_metadata?.full_name||'Usuario';
+  const initial=name.charAt(0).toUpperCase();
+  if(isAdmin){
+    document.getElementById('topbar-tagline').textContent='Panel de administración';
+    document.getElementById('topbar-right').innerHTML=`
+      <span class="atag atag-ad">Admin</span>
+      <div class="user-av" style="background:var(--admin);color:white">${initial}</div>
+      <button class="logout-btn" onclick="logout()">Salir</button>
+    `;
+  } else {
+    document.getElementById('topbar-tagline').textContent='Conectando marcas con influencers';
+    document.getElementById('topbar-right').innerHTML=`
+      <div class="role-sw">
+        <button class="rbtn ${isInf?'on':''}" onclick="switchRole('influencer',this)">Influencer</button>
+        <button class="rbtn ${!isInf?'on':''}" onclick="switchRole('brand',this)">Marca</button>
+      </div>
+      <div class="user-av" style="background:${isInf?'var(--coral-light)':'var(--purple-light)'};color:${isInf?'var(--coral)':'var(--purple)'}">${initial}</div>
+      <button class="logout-btn" onclick="logout()">Salir</button>
+    `;
+  }
 }
 
-/* ═══════════════════════════════
-   APP
-═══════════════════════════════ */
-let role='influencer', sec='dashboard';
+/* APP */
+let role='influencer',sec='dashboard';
 const navI=[{id:'dashboard',icon:'◈',label:'Dashboard'},{id:'campaigns',icon:'◎',label:'Campañas'},{id:'contracts',icon:'◻',label:'Mis contratos'},{id:'earnings',icon:'◇',label:'Comisiones'},{id:'profile',icon:'◉',label:'Mi perfil'}];
 const navB=[{id:'dashboard',icon:'◈',label:'Dashboard'},{id:'campaigns',icon:'◎',label:'Mis campañas'},{id:'applications',icon:'◻',label:'Postulaciones'},{id:'analytics',icon:'◇',label:'Métricas'},{id:'settings',icon:'◉',label:'Configuración'}];
+const navAdmin=[{id:'dashboard',icon:'◈',label:'Dashboard'},{id:'creators',icon:'◉',label:'Creators'},{id:'brands',icon:'◈',label:'Marcas'},{id:'contracts',icon:'◻',label:'Contratos'},{id:'payouts',icon:'◇',label:'Liquidaciones'},{id:'settings',icon:'◎',label:'Configuración'}];
 
 function switchRole(r,el){role=r;sec='dashboard';document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');render();}
 function go(s){sec=s;render();}
+
 function render(){
-  const nav=role==='influencer'?navI:navB;
-  document.getElementById('sidebar').innerHTML=`<div class="seclabel">Menú</div>`+nav.map(n=>`<button class="nitem${sec===n.id?' on':''}" onclick="go('${n.id}')"><span class="nicn" style="color:${sec===n.id?'var(--coral)':'var(--hint)'}">${n.icon}</span>${n.label}</button>`).join('');
-  document.getElementById('content').innerHTML=role==='influencer'?iView():bView();
+  const isAdmin=role==='admin';
+  const nav=isAdmin?navAdmin:(role==='influencer'?navI:navB);
+  const activeClass=isAdmin?'on-admin':'on';
+  document.getElementById('sidebar').innerHTML=`<div class="seclabel">${isAdmin?'Admin':'Menú'}</div>`+nav.map(n=>`<button class="nitem${sec===n.id?' '+activeClass:''}" onclick="go('${n.id}')"><span class="nicn" style="color:${sec===n.id?(isAdmin?'white':'var(--coral)'):'var(--hint)'}">${n.icon}</span>${n.label}</button>`).join('');
+  if(isAdmin) document.getElementById('content').innerHTML=adminView();
+  else document.getElementById('content').innerHTML=role==='influencer'?iView():bView();
 }
+
 function hdr(t,s,b=''){return `<div class="pgheader"><div><div class="pgtitle">${t}</div>${s?`<div class="pgsub">${s}</div>`:''}</div>${b?`<button class="btn-p">${b}</button>`:''}</div>`;}
 
+/* ─── ADMIN VIEWS ─── */
+function adminView(){
+  if(sec==='dashboard')return adminDash();
+  if(sec==='creators')return adminCreators();
+  if(sec==='brands')return adminBrands();
+  if(sec==='contracts')return adminContracts();
+  if(sec==='payouts')return adminPayouts();
+  if(sec==='settings')return adminSettings();
+  return '';
+}
+
+function adminDash(){
+  const months=[{m:'Oct',v:4200},{m:'Nov',v:6800},{m:'Dic',v:9400},{m:'Ene',v:8100},{m:'Feb',v:11200},{m:'Mar',v:14200}];
+  const max=14200;
+  return hdr('Dashboard Zynflu ✦','Vista general de la plataforma')+`
+  <div class="mgrid">
+    <div class="mcard dark"><div class="mlbl">Creators registrados</div><div class="mval">1</div><div class="msub">+1 este mes</div></div>
+    <div class="mcard dark"><div class="mlbl">Marcas registradas</div><div class="mval">1</div><div class="msub">+1 este mes</div></div>
+    <div class="mcard dark"><div class="mlbl">Contratos activos</div><div class="mval">0</div><div class="msub">En plataforma</div></div>
+    <div class="mcard dark"><div class="mlbl">Ventas totales</div><div class="mval">$0</div><div class="msub">Desde el inicio</div></div>
+  </div>
+  <div class="mgrid3">
+    <div class="mcard"><div class="mlbl">Comisiones pendientes</div><div class="mval" style="color:var(--coral)">$0</div><div class="msub">Próx. liquidación: 15 abr</div></div>
+    <div class="mcard"><div class="mlbl">Comisiones pagadas</div><div class="mval" style="color:var(--teal)">$0</div><div class="msub">Historial total</div></div>
+    <div class="mcard"><div class="mlbl">Revenue Zynflu</div><div class="mval" style="color:var(--purple)">$0</div><div class="msub">Fee de plataforma</div></div>
+  </div>
+  <div class="alert-box">
+    <div><div style="font-weight:600;font-size:14px">Próxima liquidación</div><div style="font-size:13px;color:var(--muted);margin-top:3px">15 de abril · 0 creators con comisiones pendientes</div></div>
+    <button class="btn-p" style="font-size:12px">Ver detalle</button>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="stitle">Ventas por mes</div>
+      <div class="chart-bars">
+        ${months.map(m=>`<div class="bar-col"><div style="font-size:10px;color:var(--muted)">$${(m.v/1000).toFixed(1)}k</div><div class="bar-rect" style="height:${Math.round((m.v/max)*80)}px;background:${m.m==='Mar'?'var(--admin)':'#D3D1C7'}"></div><div style="font-size:11px;color:var(--muted)">${m.m}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle">Actividad reciente</div>
+      ${[{txt:'Nuevo creator registrado',time:'Hace 2h',icon:'◉'},{txt:'Nueva marca registrada',time:'Hace 5h',icon:'◈'},{txt:'Plataforma iniciada',time:'Hoy',icon:'✦'}].map(a=>`<div style="display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)"><div style="width:28px;height:28px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:12px">${a.icon}</div><div style="flex:1"><div style="font-size:13px">${a.txt}</div><div style="font-size:11px;color:var(--muted)">${a.time}</div></div></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function adminCreators(){
+  return hdr('Creators registrados','Lista de influencers en la plataforma')+`
+  <div class="card">
+    <table class="admin-table">
+      <thead><tr><th>Creator</th><th>Nicho</th><th>Redes</th><th>Estado</th><th>Registrado</th><th>Acción</th></tr></thead>
+      <tbody id="creators-tbody"><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">Cargando...</td></tr></tbody>
+    </table>
+  </div>`;
+}
+
+function adminBrands(){
+  return hdr('Marcas registradas','Lista de empresas en la plataforma')+`
+  <div class="card">
+    <table class="admin-table">
+      <thead><tr><th>Marca</th><th>Industria</th><th>Web</th><th>Estado</th><th>Registrada</th><th>Acción</th></tr></thead>
+      <tbody id="brands-tbody"><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">Cargando...</td></tr></tbody>
+    </table>
+  </div>`;
+}
+
+function adminContracts(){
+  return hdr('Contratos activos','Todos los acuerdos en curso')+`
+  <div class="card" style="text-align:center;padding:48px">
+    <div style="font-size:32px;margin-bottom:12px">◻</div>
+    <div style="font-size:16px;font-weight:600;margin-bottom:8px">Sin contratos todavía</div>
+    <div style="font-size:13px;color:var(--muted)">Los contratos aparecen cuando una marca acepta a un creator</div>
+  </div>`;
+}
+
+function adminPayouts(){
+  return hdr('Liquidaciones','Ciclo cada 15 días')+`
+  <div class="alert-box" style="margin-bottom:1.25rem">
+    <div><div style="font-weight:600;font-size:14px">Próxima liquidación: 15 de abril</div><div style="font-size:13px;color:var(--muted);margin-top:3px">0 creators con comisiones pendientes · Total: $0</div></div>
+    <button class="btn-p" style="font-size:12px;opacity:.4" disabled>Procesar</button>
+  </div>
+  <div class="card">
+    <div class="stitle">Historial de liquidaciones</div>
+    <div style="text-align:center;padding:32px;color:var(--muted);font-size:13px">Todavía no hay liquidaciones procesadas</div>
+  </div>`;
+}
+
+function adminSettings(){
+  return hdr('Configuración de Zynflu','')+`
+  <div class="grid2">
+    <div class="card">
+      <div class="stitle">Ciclo de liquidaciones</div>
+      ${[['Frecuencia','Cada 15 días'],['Próxima','15 de abril 2026'],['Fee de plataforma','10%'],['Moneda base','USD']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}
+      <button class="btn-s" style="width:100%;margin-top:14px">Editar configuración</button>
+    </div>
+    <div class="card">
+      <div class="stitle">Admin de Zynflu</div>
+      ${[['Email','admin@zynflu.com'],['Rol','Administrador'],['Acceso','Total']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+/* ─── INFLUENCER VIEWS ─── */
 function iView(){if(sec==='dashboard')return iDash();if(sec==='campaigns')return iCamp();if(sec==='contracts')return iContracts();if(sec==='earnings')return iEarnings();if(sec==='profile')return iProfile();return '';}
 
 function iDash(){
@@ -470,54 +590,84 @@ function iDash(){
   <div class="card" style="text-align:center;padding:48px 24px">
     <div style="font-size:32px;margin-bottom:12px">◎</div>
     <div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no tenés contratos</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Explorá las campañas disponibles y aplicá a las que te interesen</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Explorá las campañas y aplicá a las que te interesen</div>
     <button class="btn-p" onclick="go('campaigns')">Ver campañas disponibles</button>
   </div>`;
 }
 
 function iCamp(){
-  const data=[{brand:'VerdeMar',prod:'Suplementos naturales',cat:'Salud',com:'18%',desc:'20%',aud:'18-35',min:'5K+'},{brand:'KidsPlay',prod:'Juguetes educativos',cat:'Infantil',com:'14%',desc:'15%',aud:'25-40',min:'10K+'},{brand:'BrewCo',prod:'Café premium',cat:'Gastro',com:'20%',desc:'25%',aud:'22-45',min:'3K+'},{brand:'TechGear',prod:'Accesorios tech',cat:'Tech',com:'12%',desc:'18%',aud:'18-30',min:'8K+'},{brand:'PetLove',prod:'Comida mascotas',cat:'Mascotas',com:'22%',desc:'20%',aud:'Todos',min:'2K+'}];
-  return hdr('Campañas disponibles','')+`<div style="display:flex;gap:8px;margin-bottom:1rem"><select><option>Todas las categorías</option><option>Salud</option><option>Tech</option><option>Moda</option></select></div>`+
-  data.map(c=>`<div class="card"><div style="display:flex;gap:12px;align-items:flex-start"><div class="av av-p av-sq" style="width:44px;height:44px">${c.brand[0]}</div><div style="flex:1"><div class="row"><div><div style="font-size:15px;font-weight:600">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.prod} · ${c.cat}</div></div><span class="badge b-ok">Abierta</span></div><div style="display:flex;gap:1.5rem;margin-top:12px;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Comisión</div><div style="font-size:17px;font-weight:600;color:var(--coral)">${c.com}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Descuento</div><div style="font-size:17px;font-weight:600;color:var(--purple)">${c.desc}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Audiencia</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.aud}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Seg. mín.</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.min}</div></div></div></div><button class="btn-p" style="flex-shrink:0;margin-top:4px">Aplicar</button></div></div>`).join('');
+  const data=[{brand:'VerdeMar',prod:'Suplementos naturales',cat:'Salud',com:'18%',desc:'20%',aud:'18-35',min:'5K+'},{brand:'KidsPlay',prod:'Juguetes educativos',cat:'Infantil',com:'14%',desc:'15%',aud:'25-40',min:'10K+'},{brand:'BrewCo',prod:'Café premium',cat:'Gastro',com:'20%',desc:'25%',aud:'22-45',min:'3K+'}];
+  return hdr('Campañas disponibles','')+data.map(c=>`<div class="card"><div style="display:flex;gap:12px;align-items:flex-start"><div class="av av-p av-sq" style="width:44px;height:44px">${c.brand[0]}</div><div style="flex:1"><div class="row"><div><div style="font-size:15px;font-weight:600">${c.brand}</div><div style="font-size:12px;color:var(--muted)">${c.prod} · ${c.cat}</div></div><span class="badge b-ok">Abierta</span></div><div style="display:flex;gap:1.5rem;margin-top:12px;padding:10px;background:var(--bg);border-radius:8px"><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Comisión</div><div style="font-size:17px;font-weight:600;color:var(--coral)">${c.com}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Descuento</div><div style="font-size:17px;font-weight:600;color:var(--purple)">${c.desc}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Audiencia</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.aud}</div></div><div><div style="font-size:10px;color:var(--hint);text-transform:uppercase">Seg. mín.</div><div style="font-size:14px;font-weight:500;margin-top:2px">${c.min}</div></div></div></div><button class="btn-p" style="flex-shrink:0;margin-top:4px">Aplicar</button></div></div>`).join('');
 }
 
-function iContracts(){
-  return hdr('Mis contratos','')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◻</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no tenés contratos</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Cuando una marca acepte tu propuesta, el contrato aparece acá</div><button class="btn-p" onclick="go('campaigns')">Explorar campañas</button></div>`;
-}
+function iContracts(){return hdr('Mis contratos','')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◻</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no tenés contratos</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Cuando una marca acepte tu propuesta aparece acá</div><button class="btn-p" onclick="go('campaigns')">Explorar campañas</button></div>`;}
 
-function iEarnings(){
-  return hdr('Mis comisiones','')+`<div class="mgrid3"><div class="mcard"><div class="mlbl">Total ganado</div><div class="mval" style="color:var(--coral)">$0</div><div class="msub">Desde el inicio</div></div><div class="mcard"><div class="mlbl">Este mes</div><div class="mval">$0</div><div class="msub">Sin ventas aún</div></div><div class="mcard"><div class="mlbl">Próximo cobro</div><div class="mval" style="color:var(--purple)">$0</div><div class="msub">Sin pagos pendientes</div></div></div>
-  <div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◇</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no hay comisiones</div><div style="font-size:13px;color:var(--muted)">Tus ganancias aparecen acá cuando tus seguidores usen tu código</div></div>`;
-}
+function iEarnings(){return hdr('Mis comisiones','')+`<div class="mgrid3"><div class="mcard"><div class="mlbl">Total ganado</div><div class="mval" style="color:var(--coral)">$0</div></div><div class="mcard"><div class="mlbl">Este mes</div><div class="mval">$0</div></div><div class="mcard"><div class="mlbl">Próximo cobro</div><div class="mval" style="color:var(--purple)">$0</div><div class="msub">Liquidación: cada 15 días</div></div></div><div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:13px;color:var(--muted)">Tus ganancias aparecen acá cuando tus seguidores usen tu código</div></div>`;}
 
 function iProfile(){
   const name=currentUser?.user_metadata?.full_name||'Tu nombre';
   const email=currentUser?.email||'';
-  const initial=name.charAt(0).toUpperCase();
-  return hdr('Mi perfil','')+`<div class="grid2"><div class="card"><div style="display:flex;gap:14px;align-items:center;margin-bottom:18px"><div style="width:56px;height:56px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:white">${initial}</div><div><div style="font-size:16px;font-weight:600">${name}</div><div style="font-size:13px;color:var(--muted)">${email}</div><span class="badge b-warn" style="margin-top:5px;display:inline-block">En revisión</span></div></div><div style="border-top:1px solid var(--border);padding-top:14px">${[['Email',email],['Rol','Creator'],['Estado','En revisión']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}</div><button class="btn-s" style="width:100%;margin-top:14px">Editar perfil</button></div>
+  return hdr('Mi perfil','')+`<div class="grid2"><div class="card"><div style="display:flex;gap:14px;align-items:center;margin-bottom:18px"><div style="width:56px;height:56px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:white">${name.charAt(0).toUpperCase()}</div><div><div style="font-size:16px;font-weight:600">${name}</div><div style="font-size:13px;color:var(--muted)">${email}</div><span class="badge b-warn" style="margin-top:5px;display:inline-block">En revisión</span></div></div>${[['Email',email],['Rol','Creator'],['Estado','En revisión']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}<button class="btn-s" style="width:100%;margin-top:14px">Editar perfil</button></div>
   <div class="card"><div class="stitle">Mis redes sociales</div><div style="text-align:center;padding:24px;color:var(--muted);font-size:13px">Agregá tus redes para que las marcas puedan verte</div><button class="btn-s" style="width:100%">+ Agregar red social</button></div></div>`;
 }
 
+/* ─── BRAND VIEWS ─── */
 function bView(){if(sec==='dashboard')return bDash();if(sec==='campaigns')return bCamp();if(sec==='applications')return bApps();if(sec==='analytics')return bAnalytics();if(sec==='settings')return bSettings();return '';}
 
 function bDash(){
   const name=currentUser?.user_metadata?.full_name?.split(' ')[0]||'Marca';
   return hdr(`Panel · ${name} ✦`,'Bienvenida a Zynflu','+ Nueva campaña')+`
-  <div class="mgrid"><div class="mcard"><div class="mlbl">Campañas activas</div><div class="mval" style="color:var(--coral)">0</div><div class="msub">Creá tu primera campaña</div></div><div class="mcard"><div class="mlbl">Influencers activos</div><div class="mval">0</div><div class="msub">Sin colaboraciones aún</div></div><div class="mcard"><div class="mlbl">Alcance total</div><div class="mval">0</div><div class="msub">seguidores combinados</div></div><div class="mcard"><div class="mlbl">Ventas referidas</div><div class="mval" style="color:var(--purple)">$0</div><div class="msub">Sin ventas aún</div></div></div>
+  <div class="mgrid"><div class="mcard"><div class="mlbl">Campañas activas</div><div class="mval" style="color:var(--coral)">0</div></div><div class="mcard"><div class="mlbl">Influencers activos</div><div class="mval">0</div></div><div class="mcard"><div class="mlbl">Alcance total</div><div class="mval">0</div></div><div class="mcard"><div class="mlbl">Ventas referidas</div><div class="mval" style="color:var(--purple)">$0</div></div></div>
   <div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◈</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Creá tu primera campaña</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Conectate con influencers y empezá a vender más</div><button class="btn-p" onclick="go('campaigns')">Crear campaña</button></div>`;
 }
 
-function bCamp(){return hdr('Mis campañas','','+ Crear campaña')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◎</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no tenés campañas</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Creá una campaña para empezar a conectarte con influencers</div><button class="btn-p">+ Crear primera campaña</button></div>`;}
-
-function bApps(){return hdr('Postulaciones','')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◻</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Sin postulaciones todavía</div><div style="font-size:13px;color:var(--muted)">Cuando los influencers apliquen a tus campañas, las ves acá</div></div>`;}
-
-function bAnalytics(){return hdr('Métricas','')+`<div class="mgrid"><div class="mcard"><div class="mlbl">ROI</div><div class="mval">—</div><div class="msub">Sin datos aún</div></div><div class="mcard"><div class="mlbl">Costo por venta</div><div class="mval">—</div><div class="msub">Sin datos aún</div></div><div class="mcard"><div class="mlbl">Ticket promedio</div><div class="mval">—</div><div class="msub">Sin datos aún</div></div><div class="mcard"><div class="mlbl">Conversión</div><div class="mval">—</div><div class="msub">Sin datos aún</div></div></div><div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:13px;color:var(--muted)">Las métricas aparecen cuando empiecen las ventas referidas</div></div>`;}
-
+function bCamp(){return hdr('Mis campañas','','+ Crear campaña')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◎</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Todavía no tenés campañas</div><div style="font-size:13px;color:var(--muted);margin-bottom:20px">Creá una campaña para conectarte con influencers</div><button class="btn-p">+ Crear primera campaña</button></div>`;}
+function bApps(){return hdr('Postulaciones','')+`<div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:32px;margin-bottom:12px">◻</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Sin postulaciones todavía</div><div style="font-size:13px;color:var(--muted)">Cuando los influencers apliquen a tus campañas, aparecen acá</div></div>`;}
+function bAnalytics(){return hdr('Métricas','')+`<div class="mgrid"><div class="mcard"><div class="mlbl">ROI</div><div class="mval">—</div></div><div class="mcard"><div class="mlbl">Costo por venta</div><div class="mval">—</div></div><div class="mcard"><div class="mlbl">Ticket promedio</div><div class="mval">—</div></div><div class="mcard"><div class="mlbl">Conversión</div><div class="mval">—</div></div></div><div class="card" style="text-align:center;padding:48px 24px"><div style="font-size:13px;color:var(--muted)">Las métricas aparecen cuando empiecen las ventas referidas</div></div>`;}
 function bSettings(){
   const name=currentUser?.user_metadata?.full_name||'';
   const email=currentUser?.email||'';
   return hdr('Configuración','')+`<div class="grid2"><div class="card"><div class="stitle">Datos de la cuenta</div>${[['Nombre',name],['Email',email],['Rol','Marca']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">${l}</span><span style="font-weight:500">${v}</span></div>`).join('')}<button class="btn-s" style="width:100%;margin-top:14px">Editar datos</button></div>
-  <div class="card"><div class="stitle">Preferencias</div><div style="text-align:center;padding:24px;color:var(--muted);font-size:13px">Completá tu perfil de marca para aparecer en el buscador</div><button class="btn-s" style="width:100%">Completar perfil</button></div></div>`;
+  <div class="card"><div class="stitle">Preferencias</div><div style="text-align:center;padding:24px;color:var(--muted);font-size:13px">Completá tu perfil de marca para aparecer en el buscador</div></div></div>`;
+}
+
+/* CARGAR DATOS ADMIN */
+async function loadAdminData(){
+  if(sec==='creators'){
+    const{data}=await sb.from('creator_profiles').select('*, users(full_name,email,created_at)').order('created_at',{ascending:false});
+    const tbody=document.getElementById('creators-tbody');
+    if(!tbody)return;
+    if(!data||data.length===0){tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No hay creators registrados todavía</td></tr>`;return;}
+    tbody.innerHTML=data.map(c=>`<tr>
+      <td><div style="font-weight:500">${c.users?.full_name||'—'}</div><div style="font-size:12px;color:var(--muted)">${c.handle?'@'+c.handle:c.users?.email||'—'}</div></td>
+      <td style="font-size:12px;color:var(--muted);max-width:160px">${c.niche||'—'}</td>
+      <td style="font-size:12px">${[c.instagram_handle&&'IG',c.tiktok_handle&&'TT',c.youtube_handle&&'YT'].filter(Boolean).join(' · ')||'—'}</td>
+      <td><span class="badge ${c.status==='active'?'b-ok':'b-warn'}">${c.status==='active'?'Activo':'En revisión'}</span></td>
+      <td style="font-size:12px;color:var(--muted)">${c.users?.created_at?new Date(c.users.created_at).toLocaleDateString('es'):'—'}</td>
+      <td><button class="btn-s" style="font-size:11px;padding:4px 10px">Ver</button></td>
+    </tr>`).join('');
+  }
+  if(sec==='brands'){
+    const{data}=await sb.from('brand_profiles').select('*, users(full_name,email,created_at)').order('created_at',{ascending:false});
+    const tbody=document.getElementById('brands-tbody');
+    if(!tbody)return;
+    if(!data||data.length===0){tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No hay marcas registradas todavía</td></tr>`;return;}
+    tbody.innerHTML=data.map(b=>`<tr>
+      <td><div style="font-weight:500">${b.company_name}</div><div style="font-size:12px;color:var(--muted)">${b.users?.email||'—'}</div></td>
+      <td style="font-size:12px;color:var(--muted)">${b.industry||'—'}</td>
+      <td style="font-size:12px"><a href="https://${b.website}" target="_blank" style="color:var(--purple)">${b.website||'—'}</a></td>
+      <td><span class="badge ${b.status==='active'?'b-ok':'b-warn'}">${b.status==='active'?'Activa':'Suspendida'}</span></td>
+      <td style="font-size:12px;color:var(--muted)">${b.users?.created_at?new Date(b.users.created_at).toLocaleDateString('es'):'—'}</td>
+      <td><button class="btn-s" style="font-size:11px;padding:4px 10px">Ver</button></td>
+    </tr>`).join('');
+  }
+}
+
+/* OVERRIDE GO para admin data */
+const _go=go;
+function go(s){
+  sec=s;render();
+  if(role==='admin'&&(s==='creators'||s==='brands'))setTimeout(loadAdminData,100);
 }
 
 /* INIT */
